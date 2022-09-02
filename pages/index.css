@@ -34,3 +34,17 @@
 /* Footer Styles */
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__copyright/footer__copyright.css");
+
+/* Popup Styles */
+@import url("../blocks/popup/popup.css");
+@import url("../blocks/popup/_opened/popup_opened.css");
+@import url("../blocks/popup/__container/popup__container.css");
+
+/* Profile Edit Form Styles */
+@import url("../blocks/form-profile-edit/form-profile-edit.css");
+@import url("../blocks/form-profile-edit/__container/form-profile-edit__container.css");
+@import url("../blocks/form-profile-edit/__title/form-profile-edit__title.css");
+@import url("../blocks/form-profile-edit/__input-area/form-profile-edit__input-area.css");
+@import url("../blocks/form-profile-edit/__label/_hidden/form-profile-edit__label_hidden.css");
+@import url("../blocks/form-profile-edit/__submit-button/form-profile-edit__submit-button.css");
+@import url("../blocks/form-profile-edit/__input/form-profile-edit__input.css");

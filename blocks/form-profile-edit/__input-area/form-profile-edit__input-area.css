@@ -1,0 +1,10 @@
+.form-profile-edit__input-area {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 30px;
+}
+
+.form-profile-edit__input-area:last-of-type {
+  padding-bottom: 42px;
+}

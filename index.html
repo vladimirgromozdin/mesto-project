@@ -12,7 +12,7 @@
       <header class="header">
         <img
           class="header__logo"
-          src="/images/logo-white.svg"
+          src="./images/logo-white.svg"
           alt="Project logo"
         />
       </header>
@@ -21,7 +21,7 @@
           <div class="profile__data">
             <img
               class="profile__avatar"
-              src="/images/profile.png"
+              src=",/images/profile.png"
               alt="Фотография профиля пользователя"
             />
             <div class="profile__description">
@@ -37,7 +37,7 @@
         <section class="elements">
           <ul class="elements__wrapper">
             <li class="element">
-              <img class="element__image" src="/images/karachevsk.png" />
+              <img class="element__image" src=",/images/karachevsk.png" />
               <div class="element__info">
                 <p class="element__caption">Карачаевск</p>
                 <button
@@ -46,7 +46,7 @@
               </div>
             </li>
             <li class="element">
-              <img class="element__image" src="/images/karachevsk.png" />
+              <img class="element__image" src=",/images/karachevsk.png" />
               <div class="element__info">
                 <p class="element__caption">Карачаевск</p>
                 <button
@@ -55,7 +55,7 @@
               </div>
             </li>
             <li class="element">
-              <img class="element__image" src="/images/karachevsk.png" />
+              <img class="element__image" src=",/images/karachevsk.png" />
               <div class="element__info">
                 <p class="element__caption">Карачаевск</p>
                 <button
@@ -64,7 +64,7 @@
               </div>
             </li>
             <li class="element">
-              <img class="element__image" src="/images/karachevsk.png" />
+              <img class="element__image" src=",/images/karachevsk.png" />
               <div class="element__info">
                 <p class="element__caption">Карачаевск</p>
                 <button
@@ -73,7 +73,7 @@
               </div>
             </li>
             <li class="element">
-              <img class="element__image" src="/images/karachevsk.png" />
+              <img class="element__image" src=",/images/karachevsk.png" />
               <div class="element__info">
                 <p class="element__caption">Карачаевск</p>
                 <button
@@ -82,7 +82,7 @@
               </div>
             </li>
             <li class="element">
-              <img class="element__image" src="/images/karachevsk.png" />
+              <img class="element__image" src=",/images/karachevsk.png" />
               <div class="element__info">
                 <p class="element__caption">Карачаевск</p>
                 <button
@@ -96,6 +96,34 @@
       <footer class="footer">
         <p class="footer__copyright">&copy;&nbsp;2020 Mesto Russia</p>
       </footer>
+    </div>
+    <div class="popup popup_opened">
+      <div class="popup__container">
+        <div class="form-profile-edit">
+          <form class="form-profile-edit__container">
+            <p class="form-profile-edit__title">Редактировать профиль</p>
+            <div class="form-profile-edit__input-area">
+              <label
+                class="form-profile-edit__label_hidden"
+                for="username"
+              ></label>
+              <input
+                class="form-profile-edit__input"
+                type="text"
+                id="username"
+              />
+              <label
+                class="form-profile-edit__label_hidden"
+                for="status"
+              ></label>
+              <input class="form-profile-edit__input" type="text" id="status" />
+            </div>
+            <button type="submit" class="form-profile-edit__submit-button">
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   </body>
 </html>
