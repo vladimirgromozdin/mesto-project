@@ -1,0 +1,36 @@
+/* General Styles */
+@import url("../vendor/normalize.css");
+@import url("../vendor/fonts.css");
+@import url("../blocks/body/body.css");
+@import url("../blocks/page/page.css");
+@import url("../blocks/content/content.css");
+
+/* Header Styles */
+@import url("../blocks/header/header.css");
+@import url("../blocks/header/__logo/header__logo.css");
+
+/* Profile Styles */
+@import url("../blocks/profile/profile.css");
+@import url("../blocks/profile/__avatar/profile__avatar.css");
+@import url("../blocks/profile/__description/profile__description.css");
+@import url("../blocks/profile/__username/profile__username.css");
+@import url("../blocks/profile/__data/profile__data.css");
+@import url("../blocks/profile/__username-area/profile__username-area.css");
+@import url("../blocks/profile/__status/profile__status.css");
+@import url("../blocks/profile/__add-new-button/profile__add-new-button.css");
+@import url("../blocks/profile/__editname-button/profile__editname-button.css");
+
+/* Elements Styles */
+@import url("../blocks/elements/elements.css");
+@import url("../blocks/elements/__wrapper/elements__wrapper.css");
+@import url("../blocks/element/element.css");
+@import url("../blocks/element/__info/element__info.css");
+@import url("../blocks/element/__caption/element__caption.css");
+@import url("../blocks/element/__image/element__image.css");
+@import url("../blocks/element/__like-button/element__like-button.css");
+@import url("../blocks/element/__like-button/_disabled/element__like-button_disabled.css");
+@import url("../blocks/element/__like-button/_active/element__like-button_active.css");
+
+/* Footer Styles */
+@import url("../blocks/footer/footer.css");
+@import url("../blocks/footer/__copyright/footer__copyright.css");

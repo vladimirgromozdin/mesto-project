@@ -1,0 +1,27 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  background-color: #000;
+  /* TODO Добавить сглаживание шрифтов на странице */
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 992px) {
+  .content {
+    max-width: 728px;
+  }
+}
+
+@media screen and (max-width: 991px) and (min-width: 321px) {
+  .content {
+    max-width: 88.125vw;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .content {
+    max-width: 282px;
+  }
+}

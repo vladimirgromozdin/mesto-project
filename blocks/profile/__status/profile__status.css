@@ -1,0 +1,16 @@
+.profile__status {
+  color: #fff;
+  font-family: "Inter";
+  font-size: 18px;
+  line-height: normal;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 550px) {
+  .profile__status {
+    font-size: 14px;
+  }
+}

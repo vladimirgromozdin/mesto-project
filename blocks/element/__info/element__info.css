@@ -1,0 +1,8 @@
+.element__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  gap: 30px;
+  padding: 0px 20px;
+}
