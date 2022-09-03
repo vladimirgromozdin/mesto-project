@@ -1,7 +1,7 @@
 .form-profile-edit__container {
   display: flex;
   flex-direction: column;
-  max-width: 430px;
+  width: 100%;
   align-items: center;
   padding: 34px 36px 37px;
 }
@@ -9,5 +9,6 @@
 @media screen and (max-width: 550px) {
   .form-profile-edit__container {
     max-width: 282px;
+    padding: 25px 22px;
   }
 }

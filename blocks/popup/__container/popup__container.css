@@ -1,6 +1,5 @@
 .popup__container {
-  display: flex;
-  flex-direction: column;
+  display: block;
   z-index: 2;
   position: fixed;
   top: 50%;

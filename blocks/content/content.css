@@ -3,7 +3,6 @@
   flex-direction: column;
   flex: 1 0 auto;
   background-color: #000;
-  /* TODO Добавить сглаживание шрифтов на странице */
   max-width: 880px;
   margin: 0 auto;
 }
