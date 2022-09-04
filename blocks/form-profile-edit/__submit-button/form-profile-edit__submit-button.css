@@ -10,6 +10,10 @@
   padding: 0px;
 }
 
+.form-profile-edit__submit-button:hover {
+  opacity: 0.8;
+}
+
 @media screen and (max-width: 550px) {
   .form-profile-edit__submit-button {
     font-size: 14px;
