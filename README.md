@@ -4,7 +4,6 @@
 
 - О проекте
 - Figma
-  <<<<<<< HEAD
 - Планы по улучшению
 
 **О проекте**
@@ -31,4 +30,3 @@
 **Figma**
 
 - [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-  > > > > > > > f63ab96977a4b2c7ffc580c5ee5bbef40c7199c9
