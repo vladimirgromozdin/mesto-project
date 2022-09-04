@@ -1,8 +1,14 @@
 .popup__container {
+  position: absolute;
   display: block;
+  max-width: 430px;
+  width: 100%;
   z-index: 2;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 550px) {
+  .popup__container {
+    max-width: 282px;
+    width: 100%;
+  }
 }

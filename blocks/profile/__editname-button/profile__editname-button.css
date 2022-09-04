@@ -1,7 +1,7 @@
 .profile__editname-button {
   width: 24px;
   height: 24px;
-  background-color: #000;
+  background-color: transparent;
   border: 1px solid #fff;
   background-image: url("../../../images/icon-edit.svg");
   background-size: fill;
@@ -20,4 +20,5 @@
 
 .profile__editname-button:hover {
   opacity: 0.6;
+  cursor: pointer;
 }

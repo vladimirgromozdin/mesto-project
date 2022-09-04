@@ -26,13 +26,13 @@
             />
             <div class="profile__description">
               <div class="profile__username-area">
-                <p class="profile__username">Жак-Ив Кусто</p>
+                <h1 class="profile__username">Жак-Ив Кусто</h1>
                 <button class="profile__editname-button"></button>
               </div>
               <p class="profile__status">Исследователь океана</p>
             </div>
           </div>
-          <button class="profile__add-new-button"></button>
+          <button type="button" class="profile__add-new-button"></button>
         </section>
         <section class="elements">
           <ul class="elements__wrapper">
@@ -43,9 +43,21 @@
                 alt="Фото Карачевска"
               />
               <div class="element__info">
-                <p class="element__caption">Карачаевск</p>
+                <h2 class="element__caption">Карачаевск</h2>
+                <button type="button" class="element__like-button"></button>
+              </div>
+            </li>
+            <li class="element">
+              <img
+                class="element__image"
+                src="./images/karachevsk.png"
+                alt="Фото Карачевска"
+              />
+              <div class="element__info">
+                <h2 class="element__caption">Карачаевск</h2>
                 <button
-                  class="element__like-button element__like-button_disabled"
+                  type="button"
+                  class="element__like-button element__like-button"
                 ></button>
               </div>
             </li>
@@ -56,9 +68,10 @@
                 alt="Фото Карачевска"
               />
               <div class="element__info">
-                <p class="element__caption">Карачаевск</p>
+                <h2 class="element__caption">Карачаевск</h2>
                 <button
-                  class="element__like-button element__like-button_disabled"
+                  type="button"
+                  class="element__like-button element__like-button"
                 ></button>
               </div>
             </li>
@@ -69,21 +82,9 @@
                 alt="Фото Карачевска"
               />
               <div class="element__info">
-                <p class="element__caption">Карачаевск</p>
+                <h2 class="element__caption">Карачаевск</h2>
                 <button
-                  class="element__like-button element__like-button_disabled"
-                ></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                class="element__image"
-                src="./images/karachevsk.png"
-                alt="Фото Карачевска"
-              />
-              <div class="element__info">
-                <p class="element__caption">Карачаевск</p>
-                <button
+                  type="button"
                   class="element__like-button element__like-button_active"
                 ></button>
               </div>
@@ -95,9 +96,10 @@
                 alt="Фото Карачевска"
               />
               <div class="element__info">
-                <p class="element__caption">Карачаевск</p>
+                <h2 class="element__caption">Карачаевск</h2>
                 <button
-                  class="element__like-button element__like-button_disabled"
+                  type="button"
+                  class="element__like-button element__like-button"
                 ></button>
               </div>
             </li>
@@ -108,9 +110,10 @@
                 alt="Фото Карачевска"
               />
               <div class="element__info">
-                <p class="element__caption">Карачаевск</p>
+                <h2 class="element__caption">Карачаевск</h2>
                 <button
-                  class="element__like-button element__like-button_disabled"
+                  type="button"
+                  class="element__like-button element__like-button"
                 ></button>
               </div>
             </li>
@@ -124,31 +127,27 @@
     <!-- Модальное окно -->
     <div class="popup popup_opened">
       <div class="popup__container">
-        <button class="popup__close-button"></button>
-        <div class="form-profile-edit">
-          <form class="form-profile-edit__container">
-            <p class="form-profile-edit__title">Редактировать профиль</p>
-            <div class="form-profile-edit__input-area">
-              <label
-                class="form-profile-edit__label_hidden"
-                for="username"
-              ></label>
-              <input
-                class="form-profile-edit__input"
-                type="text"
-                id="username"
-              />
-              <label
-                class="form-profile-edit__label_hidden"
-                for="status"
-              ></label>
-              <input class="form-profile-edit__input" type="text" id="status" />
-            </div>
-            <button type="submit" class="form-profile-edit__submit-button">
-              Сохранить
-            </button>
-          </form>
-        </div>
+        <button type="button" class="popup__close-button"></button>
+        <form class="form-profile-edit__container" name="profileData">
+          <h3 class="form-profile-edit__title">Редактировать профиль</h3>
+          <div class="form-profile-edit__input-area">
+            <input
+              class="form-profile-edit__input"
+              type="text"
+              id="username"
+              value="Жак-Ив Кусто"
+            />
+            <input
+              class="form-profile-edit__input"
+              type="text"
+              id="status"
+              value="Исследователь океана"
+            />
+          </div>
+          <button type="submit" class="form-profile-edit__submit-button">
+            Сохранить
+          </button>
+        </form>
       </div>
     </div>
     <!-- Конец модального окна -->

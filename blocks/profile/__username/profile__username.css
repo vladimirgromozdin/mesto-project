@@ -2,18 +2,19 @@
   color: #fff;
   font-size: 42px;
   line-height: 48px;
-  /* TODO Указать альтернативный шрифт */
-  font-family: "Inter";
+  font-family: "Inter", "Arial", sans-serif;
   font-weight: 500;
   margin: 0px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  max-width: 500px;
 }
 
 @media screen and (max-width: 550px) {
   .profile__username {
     font-size: 27px;
     line-height: normal;
+    max-width: 220px;
   }
 }

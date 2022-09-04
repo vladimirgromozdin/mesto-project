@@ -5,7 +5,7 @@
   height: 50px;
   border: 0px;
   border-radius: 2px;
-  font-family: "Inter";
+  font-family: "Inter", "Arial", sans-serif;
   font-size: 18px;
   padding: 0px;
 }
@@ -17,5 +17,6 @@
 @media screen and (max-width: 550px) {
   .form-profile-edit__submit-button {
     font-size: 14px;
+    height: 46px;
   }
 }
