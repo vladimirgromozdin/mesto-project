@@ -40,7 +40,7 @@
 @import url("../blocks/popup/__close-button/popup__close-button.css");
 
 /* Profile Edit Form Styles */
-@import url("../blocks/form-profile-edit/__container/form-profile-edit__container.css");
+@import url("../blocks/form-profile-edit/form-profile-edit.css");
 @import url("../blocks/form-profile-edit/__title/form-profile-edit__title.css");
 @import url("../blocks/form-profile-edit/__input-area/form-profile-edit__input-area.css");
 @import url("../blocks/form-profile-edit/__submit-button/form-profile-edit__submit-button.css");
