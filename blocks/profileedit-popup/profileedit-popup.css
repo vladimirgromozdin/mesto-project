@@ -1,5 +1,6 @@
-.popup {
-  display: none;
+.profileedit-popup {
+  display: flex;
+  visibility: hidden;
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -9,4 +10,6 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s, visibility 0.5s;
 }

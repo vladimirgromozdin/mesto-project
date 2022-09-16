@@ -1,4 +1,4 @@
-.popup__close-button {
+.profileedit-popup__close-button {
   position: absolute;
   color: #fff;
   top: -35px;
@@ -12,13 +12,13 @@
   padding: 0;
 }
 
-.popup__close-button:hover {
+.profileedit-popup__close-button:hover {
   opacity: 0.6;
   cursor: pointer;
 }
 
 @media screen and (max-width: 550px) {
-  .popup__close-button {
+  .profileedit-popup__close-button {
     width: 20px;
     height: 20px;
     top: -37px;

@@ -1,13 +1,13 @@
-.popup__container {
-  position: relative;
+.profileedit-popup__container {
   display: block;
+  position: relative;
   max-width: 430px;
   width: 100%;
   z-index: 2;
 }
 
 @media screen and (max-width: 550px) {
-  .popup__container {
+  .profileedit-popup__container {
     max-width: 282px;
   }
 }

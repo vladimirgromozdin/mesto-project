@@ -34,10 +34,10 @@
 @import url("../blocks/footer/__copyright/footer__copyright.css");
 
 /* Popup Styles */
-@import url("../blocks/popup/popup.css");
-@import url("../blocks/popup/_opened/popup_opened.css");
-@import url("../blocks/popup/__container/popup__container.css");
-@import url("../blocks/popup/__close-button/popup__close-button.css");
+@import url("../blocks/profileedit-popup/profileedit-popup.css");
+@import url("../blocks/profileedit-popup/_opened/profileedit-popup_opened.css");
+@import url("../blocks/profileedit-popup/__container/profile-popup__container.css");
+@import url("../blocks/profileedit-popup/__close-button/profileedit-popup__close-button.css");
 
 /* Profile Edit Form Styles */
 @import url("../blocks/form-profile-edit/form-profile-edit.css");

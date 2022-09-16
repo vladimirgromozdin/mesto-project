@@ -124,10 +124,11 @@
         <p class="footer__copyright">&copy;&nbsp;2022 Mesto Russia</p>
       </footer>
     </div>
-    <!-- Модальное окно -->
-    <div class="popup popup_opened">
-      <div class="popup__container">
-        <button type="button" class="popup__close-button"></button>
+    <!-- Модальное окно «Редактировать профиль» -->
+    <!-- TODO Разобраться, как сделать так, чтобы анимация не отрабатывала при первом открытии страницы -->
+    <div class="profileedit-popup">
+      <div class="profileedit-popup__container">
+        <button type="button" class="profileedit-popup__close-button"></button>
         <form class="form-profile-edit" name="profileData">
           <h3 class="form-profile-edit__title">Редактировать профиль</h3>
           <div class="form-profile-edit__input-area">
@@ -152,6 +153,7 @@
         </form>
       </div>
     </div>
-    <!-- Конец модального окна -->
+    <!-- Конец модального окна «Редактировать профиль» -->
+    <script src="./scripts/index.js"></script>
   </body>
 </html>
