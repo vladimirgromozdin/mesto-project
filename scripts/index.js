@@ -1,50 +1,41 @@
-// Заполняем поля ввода формы «Редактировать профиль» данными со страницы
-
-// Ищем данные на странице и наполняем ими переменные
-let profileUsername = document.querySelector(".profile__username").textContent;
-console.log(profileUsername);
-
-let profileStatus = document.querySelector(".profile__status").textContent;
-console.log(profileStatus);
-
-// Ищем инпуты в форме и наполняем их значения контентом со страницы
-let profileEditFormUsernameInput = document.querySelector('#username');
-console.log(profileEditFormUsernameInput);
-
-let profileEditFormStatusInput = document.querySelector('#status');
-console.log(profileEditFormUsernameInput);
-
-function profileEditFormInputsValues () {
-  profileEditFormUsernameInput.value = profileUsername;
-  profileEditFormStatusInput.value = profileStatus;
-}
-
-profileEditFormInputsValues();
-
-// Оживляем попап «Редактировать профиль»
-
-// Объявляем переменные
-let profileEditPopup = document.querySelector('.profileedit-popup');
-
-let profileEditButton = document.querySelector('.profile__editname-button');
-
-let profileEditPopupCloseIcon = document.querySelector(
-  '.profileedit-popup__close-button'
+/** Constants, Query Selectors & Event Listeners */
+const profileUsername =
+  document.querySelector(".profile__username");
+const profileStatus = document.querySelector(".profile__status");
+const profileEditButton = document.querySelector(".profile__editname-button");
+const profileEditPopup = document.querySelector(".profileedit-popup");
+const profileEditPopupCloseIcon = document.querySelector(
+  ".profileedit-popup__close-button"
 );
+const profileEditFormUsernameInput = document.querySelector("#username");
+profileEditFormUsernameInput.value = profileUsername.textContent;
+const profileEditFormStatusInput = document.querySelector("#status");
+profileEditFormStatusInput.value = profileStatus.textContent;
+const formElement = document.querySelector(".form-profile-edit");
 
-// Добавляем класс при открытии
+profileEditButton.addEventListener("click", showProfileEditPopup);
+profileEditPopupCloseIcon.addEventListener("click", closeProfileEditPopup);
+formElement.addEventListener("submit", formSubmitHandler);
+
+/** Functions */
 function showProfileEditPopup() {
   profileEditPopup.classList.add("profileedit-popup_opened");
 }
 
-// Открываем попап при клике на иконку
-profileEditButton.addEventListener("click", showProfileEditPopup);
-
-// Удаляем класс при закрытии
 function closeProfileEditPopup() {
   profileEditPopup.classList.remove("profileedit-popup_opened");
 }
 
-// Закрываем попап при клике на крестик
-profileEditPopupCloseIcon.addEventListener("click", closeProfileEditPopup);
+function formSubmitHandler(evt) {
+  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+
+  const profileEditFormUsernameInputValue = profileEditFormUsernameInput.value;
+  const profileEditFormStatusInputValue = profileEditFormStatusInput.value;
+
+  profileUsername.textContent = profileEditFormUsernameInputValue;
+  profileStatus.textContent = profileEditFormStatusInputValue;
+
+  closeProfileEditPopup()
+}
+
 
