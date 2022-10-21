@@ -96,3 +96,15 @@ function cardAddSubmitHandler(evt) {
 
   closeAddCardPopup();
 }
+
+
+
+// Create Initial Cards
+initialCards.forEach(function (item) {
+  const cardTemplate = document.querySelector("#new-card-template").content;
+  const cardElement = cardTemplate.cloneNode(true);
+  cardElement.querySelector(".element__image").src = item.link;
+  cardElement.querySelector(".element__image").alt = item.name;
+  cardElement.querySelector(".element__caption").textContent = item.name;
+  cardList.prepend(cardElement);
+});
