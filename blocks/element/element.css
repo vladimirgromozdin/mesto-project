@@ -6,4 +6,5 @@
   aspect-ratio: calc(282 / 361);
   max-width: fit-content;
   overflow: hidden;
+  position: relative;
 }

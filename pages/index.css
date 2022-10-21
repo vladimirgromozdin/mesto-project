@@ -22,6 +22,7 @@
 
 /* Elements Styles */
 @import url("../blocks/elements/__wrapper/elements__wrapper.css");
+@import url("../blocks/element/__transh-bin-button/element__trash-bin-button.css");
 @import url("../blocks/element/element.css");
 @import url("../blocks/element/__info/element__info.css");
 @import url("../blocks/element/__caption/element__caption.css");
@@ -33,11 +34,15 @@
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__copyright/footer__copyright.css");
 
-/* Popup Styles */
+/* Popups Styles */
 @import url("../blocks/profileedit-popup/profileedit-popup.css");
 @import url("../blocks/profileedit-popup/_opened/profileedit-popup_opened.css");
 @import url("../blocks/profileedit-popup/__container/profile-popup__container.css");
 @import url("../blocks/profileedit-popup/__close-button/profileedit-popup__close-button.css");
+@import url("../blocks/addnewcard-popup/addnewcard-popup.css");
+@import url("../blocks/addnewcard-popup/__close-button/addnewcard-popup__close-button.css");
+@import url("../blocks/addnewcard-popup/__container/addnewcard-popup__container.css");
+@import url("../blocks/addnewcard-popup/_opened/addnewcard-popup_opened.css");
 
 /* Profile Edit Form Styles */
 @import url("../blocks/form-profile-edit/form-profile-edit.css");
@@ -45,3 +50,10 @@
 @import url("../blocks/form-profile-edit/__input-area/form-profile-edit__input-area.css");
 @import url("../blocks/form-profile-edit/__submit-button/form-profile-edit__submit-button.css");
 @import url("../blocks/form-profile-edit/__input/form-profile-edit__input.css");
+
+/* Add New Card Form Styles */
+@import url("../blocks/form-addnewcard/form-addnewcard.css");
+@import url("../blocks/form-addnewcard/__title/from-addnewcard__title.css");
+@import url("../blocks/form-addnewcard/__input-area/form-addnewcard__input-area.css");
+@import url("../blocks/form-addnewcard/__input/form-addnewcard__input.css");
+@import url("../blocks/form-addnewcard/__submit-button/form-addnewcard__submit-button.css");
