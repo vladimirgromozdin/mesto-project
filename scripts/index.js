@@ -34,9 +34,6 @@ addCardButton.addEventListener("click", showAddCardPopup);
 addCardPopupCloseIcon.addEventListener("click", closeAddCardPopup);
 cardAddForm.addEventListener("submit", cardAddSubmitHandler);
 
-// Like Buttions
-const likeButton = document.querySelector(".element__like-button");
-
 /** Functions */
 
 // Show Profile Edit Popup
@@ -93,11 +90,12 @@ function cardAddSubmitHandler(evt) {
 
   cardAddNameInput.value = "";
   cardAddImageURLInput.value = "";
+  // отслеживаем клики по кнопке лайков
+  const likeButton = document.querySelector(".element__like-button");
+  likeButton.addEventListener("click", toggleLikeButton);
 
   closeAddCardPopup();
 }
-
-
 
 // Create Initial Cards
 initialCards.forEach(function (item) {
@@ -107,4 +105,18 @@ initialCards.forEach(function (item) {
   cardElement.querySelector(".element__image").alt = item.name;
   cardElement.querySelector(".element__caption").textContent = item.name;
   cardList.prepend(cardElement);
+});
+
+let likeButtons = document.querySelectorAll(".element__like-button");
+
+// Like Buttons Toggle
+function toggleLikeButton(evt) {
+  const eventTarget = evt.target;
+  eventTarget.classList.toggle("element__like-button_active");
+}
+
+// Like Buttons
+likeButtons.forEach(function (item) {
+  const likeButton = item.querySelector(".element__like-button");
+  item.addEventListener("click", toggleLikeButton);
 });
