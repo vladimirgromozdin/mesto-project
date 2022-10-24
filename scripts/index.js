@@ -81,11 +81,12 @@ function cardAddSubmitHandler(evt) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardAddName = cardAddNameInput.value;
   const cardAddImageURL = cardAddImageURLInput.value;
-
-  cardElement.querySelector(".element__image").src = cardAddImageURL;
-  cardElement.querySelector(".element__image").alt = cardAddName;
+  let cardImage = cardElement.querySelector(".element__image");
+  cardImage.src = cardAddImageURL;
+  cardImage.alt = cardAddName;
+  // cardElement.querySelector(".element__image").src = cardAddImageURL;
+  // cardElement.querySelector(".element__image").alt = cardAddName;
   cardElement.querySelector(".element__caption").textContent = cardAddName;
-
   cardList.prepend(cardElement);
 
   cardAddNameInput.value = "";
@@ -94,7 +95,13 @@ function cardAddSubmitHandler(evt) {
   const likeButton = document.querySelector(".element__like-button");
   likeButton.addEventListener("click", toggleLikeButton);
 
+
+  // отслеживаем клики по кнопке удаления
+  const removeButton = document.querySelector('.element__trash-bin-button');
+  removeButton.addEventListener('click', removeCard);
+
   closeAddCardPopup();
+
 }
 
 // Create Initial Cards
@@ -107,7 +114,7 @@ initialCards.forEach(function (item) {
   cardList.prepend(cardElement);
 });
 
-let likeButtons = document.querySelectorAll(".element__like-button");
+const likeButtons = document.querySelectorAll(".element__like-button");
 
 // Like Buttons Toggle
 function toggleLikeButton(evt) {
@@ -115,8 +122,21 @@ function toggleLikeButton(evt) {
   eventTarget.classList.toggle("element__like-button_active");
 }
 
-// Like Buttons
+// Like Buttons Tracking
 likeButtons.forEach(function (item) {
   const likeButton = item.querySelector(".element__like-button");
   item.addEventListener("click", toggleLikeButton);
+});
+
+
+//Removing Cards
+
+function removeCard(evt) {
+  evt.target.closest('.element').remove();
+};
+
+const removeButtons = document.querySelectorAll('.element__trash-bin-button ');
+
+removeButtons.forEach(function (item) {
+  item.addEventListener('click', removeCard);
 });
