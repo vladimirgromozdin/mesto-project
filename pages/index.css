@@ -57,3 +57,11 @@
 @import url("../blocks/form-addnewcard/__input-area/form-addnewcard__input-area.css");
 @import url("../blocks/form-addnewcard/__input/form-addnewcard__input.css");
 @import url("../blocks/form-addnewcard/__submit-button/form-addnewcard__submit-button.css");
+
+/* Gallery Popup Styles */
+@import url("../blocks/gallery-popup/gallery-popup.css");
+@import url("../blocks/gallery-popup/__container/gallery-popup__container.css");
+@import url("../blocks/gallery-popup/__close-button/gallery-popup__close-button.css");
+@import url("../blocks/gallery-popup/_opened/gallery-popup_opened.css");
+@import url("../blocks/gallery-popup/__image/gallery-popup__image.css");
+@import url("../blocks/gallery-popup/__caption/gallery-popup__caption.css");

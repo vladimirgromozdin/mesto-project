@@ -1,4 +1,4 @@
-.addnewcard-popup {
+.gallery-popup {
   display: flex;
   visibility: hidden;
   align-items: center;
@@ -8,8 +8,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 4;
   opacity: 0;
   transition: opacity 0.5s, visibility 0.5s;
 }

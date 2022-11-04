@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 550px) {
-  .addnewcard {
+  .form-addnewcard {
     align-items: center;
     max-width: 238px;
     padding: 25px 22px;
