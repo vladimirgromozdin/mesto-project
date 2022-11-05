@@ -43,44 +43,41 @@
         <p class="footer__copyright">&copy;&nbsp;2022 Mesto Russia</p>
       </footer>
     </div>
-    <!-- Модальное окно «Редактировать профиль» -->
-    <!-- TODO Разобраться, как сделать так, чтобы анимация не отрабатывала при первом открытии страницы -->
-    <div class="profileedit-popup">
-      <div class="profileedit-popup__container">
-        <button type="button" class="profileedit-popup__close-button"></button>
-        <form class="form-profile-edit" name="profileData">
-          <h3 class="form-profile-edit__title">Редактировать профиль</h3>
-          <div class="form-profile-edit__input-area">
+    <!-- Edit Profile Popup -->
+    <div class="popup popup_profile popup_opacity_light">
+      <div class="popup__container popup__container_modal_form">
+        <button type="button" class="popup__close-button"></button>
+        <form class="popup__form" name="profileData">
+          <h3 class="popup__title">Редактировать профиль</h3>
+          <div class="popup__input-area">
             <input
-              class="form-profile-edit__input"
+              class="popup__input"
               type="text"
               name="username"
               id="username"
               value=""
             />
             <input
-              class="form-profile-edit__input"
+              class="popup__input"
               type="text"
               name="status"
               id="status"
               value=""
             />
           </div>
-          <button type="submit" class="form-profile-edit__submit-button">
-            Сохранить
-          </button>
+          <button type="submit" class="popup__submit-button">Сохранить</button>
         </form>
       </div>
     </div>
-    <!-- Модальное окно «Добавить карточку» -->
-    <div class="addnewcard-popup">
-      <div class="addnewcard-popup__container">
-        <button type="button" class="addnewcard-popup__close-button"></button>
-        <form class="form-addnewcard" name="cardData">
-          <h3 class="form-addnewcard__title">Новое место</h3>
-          <div class="form-addnewcard__input-area">
+    <!-- Add New Card Popup -->
+    <div class="popup popup_new-card popup_opacity_light">
+      <div class="popup__container popup__container_modal_form">
+        <button type="button" class="popup__close-button"></button>
+        <form class="popup__form" name="cardData">
+          <h3 class="popup__title">Новое место</h3>
+          <div class="popup__input-area">
             <input
-              class="form-addnewcard__input"
+              class="popup__input"
               type="text"
               name="place-name"
               id="place-name"
@@ -88,7 +85,7 @@
               placeholder="Название"
             />
             <input
-              class="form-addnewcard__input"
+              class="popup__input"
               type="text"
               name="place-image-link"
               id="place-image-link"
@@ -96,20 +93,19 @@
               placeholder="Ссылка на картинку"
             />
           </div>
-          <button type="submit" class="form-addnewcard__submit-button">
-            Создать
-          </button>
+          <button type="submit" class="popup__submit-button">Создать</button>
         </form>
       </div>
     </div>
-    <div class="gallery-popup">
-      <div class="gallery-popup__container">
-        <button type="button" class="gallery-popup__close-button"></button>
+    <!-- Full Image Popup -->
+    <div class="popup popup_fullimage popup_opacity_dark">
+      <div class="popup__container popup__container_modal_image">
+        <button type="button" class="popup__close-button"></button>
         <img class="gallery-popup__image" src="" />
         <p class="gallery-popup__caption"></p>
       </div>
     </div>
-    <!-- Шаблон новой карточки -->
+    <!-- New Card Template -->
     <template id="new-card-template">
       <li class="element">
         <button type="button" class="element__trash-bin-button"></button>

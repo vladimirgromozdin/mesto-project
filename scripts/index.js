@@ -5,8 +5,8 @@ const profileUsername = document.querySelector(".profile__username");
 const profileStatus = document.querySelector(".profile__status");
 const profileEditButton = document.querySelector(".profile__editname-button");
 const profileEditPopup = document.querySelector(".profileedit-popup");
-const profileEditPopupCloseIcon = document.querySelector(
-  ".profileedit-popup__close-button"
+const popupCloseIcon = document.querySelector(
+  ".popup__close-button"
 );
 const profileEditFormUsernameInput = document.querySelector("#username");
 const profileEditFormStatusInput = document.querySelector("#status");
@@ -16,23 +16,20 @@ profileEditFormUsernameInput.value = profileUsername.textContent; // Set Usernam
 profileEditFormStatusInput.value = profileStatus.textContent; // Set Status Placeholder
 
 profileEditButton.addEventListener("click", showProfileEditPopup);
-profileEditPopupCloseIcon.addEventListener("click", closeProfileEditPopup);
 profileFormElement.addEventListener("submit", formProfileEditSubmitHandler);
 
 
 // Adding New Cards
 const addCardPopup = document.querySelector(".addnewcard-popup");
 const addCardButton = document.querySelector(".profile__add-new-button");
-const addCardPopupCloseIcon = document.querySelector(
-  ".addnewcard-popup__close-button"
-);
+
 const cardAddNameInput = document.querySelector("#place-name");
 const cardAddImageURLInput = document.querySelector("#place-image-link");
 const cardAddForm = document.querySelector(".form-addnewcard");
 const cardList = document.querySelector(".elements__wrapper");
 
 addCardButton.addEventListener("click", showAddCardPopup);
-addCardPopupCloseIcon.addEventListener("click", closeAddCardPopup);
+popupCloseIcon.addEventListener("click", closeAddCardPopup);
 cardAddForm.addEventListener("submit", cardAddSubmitHandler);
 
 /** Functions */
@@ -131,7 +128,6 @@ removeButtons.forEach(function (item) {
 // Opening Fullscreen Image
 const galleryPopup = document.querySelector('.gallery-popup');
 const galleryPopupCloseIcon = document.querySelector('.gallery-popup__close-button');
-galleryPopupCloseIcon.addEventListener('click', closeGalleryPopup);
 const cardImagesArray = document.querySelectorAll('.element__image');
 const cardImageCaption = document.querySelector('.gallery-popup__caption');
 cardImagesArray.forEach(function (item) {
