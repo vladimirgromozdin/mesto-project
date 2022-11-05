@@ -1,6 +1,7 @@
 .element__caption {
   font-family: "Inter", "Arial", sans-serif;
   font-size: 24px;
+  max-width: 189px;
   color: #000;
   font-weight: 900;
   text-overflow: ellipsis;

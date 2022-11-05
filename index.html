@@ -44,10 +44,13 @@
       </footer>
     </div>
     <!-- Edit Profile Popup -->
-    <div class="popup popup_profile popup_opacity_light">
+    <div class="popup popup_content_profile popup_opacity_light">
       <div class="popup__container popup__container_modal_form">
-        <button type="button" class="popup__close-button"></button>
-        <form class="popup__form" name="profileData">
+        <button
+          type="button"
+          class="popup__close-button popup__close-button_content_profile"
+        ></button>
+        <form class="popup__form popup__form_profile" name="profileData">
           <h3 class="popup__title">Редактировать профиль</h3>
           <div class="popup__input-area">
             <input
@@ -65,15 +68,23 @@
               value=""
             />
           </div>
-          <button type="submit" class="popup__submit-button">Сохранить</button>
+          <button
+            type="submit"
+            class="popup__submit-button popup__submit-button_content_profile"
+          >
+            Сохранить
+          </button>
         </form>
       </div>
     </div>
     <!-- Add New Card Popup -->
-    <div class="popup popup_new-card popup_opacity_light">
+    <div class="popup popup_content_new-card popup_opacity_light">
       <div class="popup__container popup__container_modal_form">
-        <button type="button" class="popup__close-button"></button>
-        <form class="popup__form" name="cardData">
+        <button
+          type="button"
+          class="popup__close-button popup__close-button_content_new-card"
+        ></button>
+        <form class="popup__form popup__form_card" name="cardData">
           <h3 class="popup__title">Новое место</h3>
           <div class="popup__input-area">
             <input
@@ -93,16 +104,24 @@
               placeholder="Ссылка на картинку"
             />
           </div>
-          <button type="submit" class="popup__submit-button">Создать</button>
+          <button
+            type="submit"
+            class="popup__submit-button popup__submit-button_content_new-card"
+          >
+            Создать
+          </button>
         </form>
       </div>
     </div>
     <!-- Full Image Popup -->
-    <div class="popup popup_fullimage popup_opacity_dark">
+    <div class="popup popup_content_fullimage popup_opacity_dark">
       <div class="popup__container popup__container_modal_image">
-        <button type="button" class="popup__close-button"></button>
-        <img class="gallery-popup__image" src="" />
-        <p class="gallery-popup__caption"></p>
+        <button
+          type="button"
+          class="popup__close-button popup__close-button_content_fullimage"
+        ></button>
+        <img class="popup__image" src="" />
+        <p class="popup__caption"></p>
       </div>
     </div>
     <!-- New Card Template -->
