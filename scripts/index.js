@@ -61,9 +61,7 @@ galleryPopupCloseButton.addEventListener("click", () => {
 /** Functions */
 // Create Initial Cards
 initialCards.forEach(function (item) {
-  let cardAddImageUrl = item.link;
-  let cardAddName = item.name;
-  createCard(cardAddImageUrl, cardAddName);
+  cardList.prepend(createCard(item.link, item.name));
 });
 
 // Show & Close Popup
@@ -86,20 +84,22 @@ function formProfileEditSubmitHandler(evt) {
 // Handle Card Add Submissions
 function cardAddSubmitHandler(evt) {
   evt.preventDefault();
-  let cardAddCurrentImageUrl = cardAddImageUrlInput.value;
-  let cardAddCurrentName = cardAddNameInput.value;
-  createCard(cardAddCurrentImageUrl, cardAddCurrentName);
+  const cardAddCurrentImageUrl = cardAddImageUrlInput.value;
+  const cardAddCurrentName = cardAddNameInput.value;
+  cardList.prepend(createCard(cardAddCurrentImageUrl, cardAddCurrentName));
   closePopup(newCardAddPopup);
+  cardAddNameInput.value = "";
+  cardAddImageUrlInput.value = "";
 }
 
 // Create New Cards
 function createCard(cardAddImageUrl, cardAddName) {
   const cardTemplate = document.querySelector("#new-card-template").content;
   const cardElement = cardTemplate.cloneNode(true);
-  let cardName = cardElement.querySelector(".element__caption");
-  let cardImage = cardElement.querySelector(".element__image");
-  let cardLikeButton = cardElement.querySelector(".element__like-button");
-  let cardRemoveButton = cardElement.querySelector(
+  const cardName = cardElement.querySelector(".element__caption");
+  const cardImage = cardElement.querySelector(".element__image");
+  const cardLikeButton = cardElement.querySelector(".element__like-button");
+  const cardRemoveButton = cardElement.querySelector(
     ".element__trash-bin-button"
   );
   cardImage.src = cardAddImageUrl;
@@ -108,9 +108,7 @@ function createCard(cardAddImageUrl, cardAddName) {
   cardImage.addEventListener("click", showGalleryPopup);
   cardLikeButton.addEventListener("click", toggleLikeButton);
   cardRemoveButton.addEventListener("click", removeCard);
-  cardList.prepend(cardElement);
-  cardAddNameInput.value = "";
-  cardAddImageUrlInput.value = "";
+  return cardElement;
 }
 
 // Toggle Like Buttons
