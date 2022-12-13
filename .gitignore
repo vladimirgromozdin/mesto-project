@@ -117,3 +117,4 @@ fabric.properties
 # Other Folders to Ignore
 node_modules
 dist
+.idea
