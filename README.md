@@ -9,7 +9,7 @@
 **О проекте**
 Место — учёбный проект Яндекс-практикума. Задача — научиться верстать страницы, которые одинаково хорошо выглядят как на компьютере, там и не мобильных устройствах.
 
-Технологии: HTML, CSS.
+Технологии: HTML, CSS, JS, Webpack.
 
 Проект доступен по ссылке: [https://vladimirgromozdin.github.io/mesto-project](https://vladimirgromozdin.github.io/mesto-project)
 
