@@ -127,9 +127,9 @@ function removeCard(evt) {
 function showGalleryPopup(evt) {
   let cardImageUrl = evt.target.src;
   const cardImageCaption = document.querySelector(".popup__caption");
-  let cardFullscreenName = evt.target.alt;
+  const cardFullscreenName = evt.target.alt;
   cardImageCaption.textContent = cardFullscreenName;
-  let galleryPopupImage = document.querySelector(".popup__image");
+  const galleryPopupImage = document.querySelector(".popup__image");
   galleryPopupImage.src = cardImageUrl;
   galleryPopup.classList.add("popup_opened");
 }
