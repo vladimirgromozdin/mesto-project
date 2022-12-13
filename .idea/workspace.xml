@@ -12,7 +12,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "node.js.selected.package.tslint": "(autodetect)"
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "vcs.Git"
   }
 }]]></component>
   <component name="TaskManager">
