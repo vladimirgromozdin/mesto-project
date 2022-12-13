@@ -125,11 +125,11 @@ function removeCard(evt) {
 
 // Show Full Image
 function showGalleryPopup(evt) {
-  cardImageUrl = evt.target.src;
+  let cardImageUrl = evt.target.src;
   const cardImageCaption = document.querySelector(".popup__caption");
-  cardFullscreenName = evt.target.alt;
+  let cardFullscreenName = evt.target.alt;
   cardImageCaption.textContent = cardFullscreenName;
-  galleryPopupImage = document.querySelector(".popup__image");
+  let galleryPopupImage = document.querySelector(".popup__image");
   galleryPopupImage.src = cardImageUrl;
   galleryPopup.classList.add("popup_opened");
 }
