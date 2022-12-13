@@ -1,0 +1,26 @@
+{
+  "name": "mesto-project",
+  "version": "1.0.0",
+  "description": "### Обзор",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist && webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladimirgromozdin/mesto-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vladimirgromozdin/mesto-project/issues"
+  },
+  "homepage": "https://github.com/vladimirgromozdin/mesto-project#readme",
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  }
+}
