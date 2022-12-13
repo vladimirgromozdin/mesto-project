@@ -1,3 +1,7 @@
+// Webpack Dependencies
+import '../styles/index.css';
+import {initialCards} from './data.js';
+
 /** Constants, Query Selectors & Event Listeners */
 const profileUsername = document.querySelector(".profile__username");
 const profileStatus = document.querySelector(".profile__status");
@@ -18,10 +22,6 @@ const galleryPopupCloseButton = document.querySelector(
 const profileEditFormUsernameInput = document.querySelector("#username");
 const profileEditFormStatusInput = document.querySelector("#status");
 const profileFormElement = document.querySelector(".popup__form_profile");
-const cardAddPopup = document.querySelector(".popup_content_new-card");
-const cardAddButton = document.querySelector(
-  ".popup__submit-button_content_new-card"
-);
 const cardAddNameInput = document.querySelector("#place-name");
 const cardAddImageUrlInput = document.querySelector("#place-image-link");
 const cardAddForm = document.querySelector(".popup__form_card");
