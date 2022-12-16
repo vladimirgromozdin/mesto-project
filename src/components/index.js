@@ -1,6 +1,7 @@
 // Webpack Dependencies
-import '../styles/index.css';
-import {initialCards} from './data.js';
+import "../styles/index.css";
+import {initialCards} from "./data.js";
+import {closePopup, showPopup} from "./modal.js";
 
 /** Constants, Query Selectors & Event Listeners */
 const profileUsername = document.querySelector(".profile__username");
@@ -50,7 +51,7 @@ newCardAddButton.addEventListener("click", () => {
 });
 
 newCardAddPopupCloseButton.addEventListener("click", () => {
-  closePopup(newCardAddPopup);
+  closePopup(newCardAddPopup)
 });
 
 // Gallery View Interactions
@@ -65,15 +66,6 @@ initialCards.forEach(function (item) {
   let cardAddName = item.name;
   createCard(cardAddImageUrl, cardAddName);
 });
-
-// Show & Close Popup
-function showPopup(item) {
-  item.classList.add("popup_opened");
-}
-
-function closePopup(item) {
-  item.classList.remove("popup_opened");
-}
 
 // Handle Profile Edit Form Submissions
 function formProfileEditSubmitHandler(evt) {
@@ -125,7 +117,7 @@ function removeCard(evt) {
 
 // Show Full Image
 function showGalleryPopup(evt) {
-  let cardImageUrl = evt.target.src;
+  const cardImageUrl = evt.target.src;
   const cardImageCaption = document.querySelector(".popup__caption");
   const cardFullscreenName = evt.target.alt;
   cardImageCaption.textContent = cardFullscreenName;
