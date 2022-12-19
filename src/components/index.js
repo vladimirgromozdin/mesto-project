@@ -1,6 +1,7 @@
 // Webpack Dependencies
 import "../styles/index.css";
 import {initialCards} from "./data.js";
+import {createCard} from "./card.js";
 import {closePopup, showPopup} from "./modal.js";
 
 /** Constants, Query Selectors & Event Listeners */
@@ -16,17 +17,13 @@ const newCardAddPopup = document.querySelector(".popup_content_new-card");
 const newCardAddPopupCloseButton = document.querySelector(
   ".popup__close-button_content_new-card"
 );
-const galleryPopup = document.querySelector(".popup_content_fullimage");
-const galleryPopupCloseButton = document.querySelector(
-  ".popup__close-button_content_fullimage"
-);
 const profileEditFormUsernameInput = document.querySelector("#username");
 const profileEditFormStatusInput = document.querySelector("#status");
 const profileFormElement = document.querySelector(".popup__form_profile");
-const cardAddNameInput = document.querySelector("#place-name");
-const cardAddImageUrlInput = document.querySelector("#place-image-link");
 const cardAddForm = document.querySelector(".popup__form_card");
 const cardList = document.querySelector(".elements__wrapper");
+const cardAddImageUrlInput = document.querySelector("#place-image-link");
+const cardAddNameInput = document.querySelector("#place-name");
 
 // Profile Edit Form Submissions
 profileFormElement.addEventListener("submit", formProfileEditSubmitHandler);
@@ -51,13 +48,9 @@ newCardAddButton.addEventListener("click", () => {
 });
 
 newCardAddPopupCloseButton.addEventListener("click", () => {
-  closePopup(newCardAddPopup)
+  closePopup(newCardAddPopup);
 });
 
-// Gallery View Interactions
-galleryPopupCloseButton.addEventListener("click", () => {
-  closePopup(galleryPopup);
-});
 
 /** Functions */
 // Create Initial Cards
@@ -78,50 +71,10 @@ function formProfileEditSubmitHandler(evt) {
 // Handle Card Add Submissions
 function cardAddSubmitHandler(evt) {
   evt.preventDefault();
-  let cardAddCurrentImageUrl = cardAddImageUrlInput.value;
-  let cardAddCurrentName = cardAddNameInput.value;
+  const cardAddCurrentImageUrl = cardAddImageUrlInput.value;
+  const cardAddCurrentName = cardAddNameInput.value;
   createCard(cardAddCurrentImageUrl, cardAddCurrentName);
   closePopup(newCardAddPopup);
 }
 
-// Create New Cards
-function createCard(cardAddImageUrl, cardAddName) {
-  const cardTemplate = document.querySelector("#new-card-template").content;
-  const cardElement = cardTemplate.cloneNode(true);
-  let cardName = cardElement.querySelector(".element__caption");
-  let cardImage = cardElement.querySelector(".element__image");
-  let cardLikeButton = cardElement.querySelector(".element__like-button");
-  let cardRemoveButton = cardElement.querySelector(
-    ".element__trash-bin-button"
-  );
-  cardImage.src = cardAddImageUrl;
-  cardImage.alt = cardAddName;
-  cardName.textContent = cardAddName;
-  cardImage.addEventListener("click", showGalleryPopup);
-  cardLikeButton.addEventListener("click", toggleLikeButton);
-  cardRemoveButton.addEventListener("click", removeCard);
-  cardList.prepend(cardElement);
-  cardAddNameInput.value = "";
-  cardAddImageUrlInput.value = "";
-}
 
-// Toggle Like Buttons
-function toggleLikeButton(evt) {
-  evt.target.classList.toggle("element__like-button_active");
-}
-
-//Remove Cards
-function removeCard(evt) {
-  evt.target.closest(".element").remove();
-}
-
-// Show Full Image
-function showGalleryPopup(evt) {
-  const cardImageUrl = evt.target.src;
-  const cardImageCaption = document.querySelector(".popup__caption");
-  const cardFullscreenName = evt.target.alt;
-  cardImageCaption.textContent = cardFullscreenName;
-  const galleryPopupImage = document.querySelector(".popup__image");
-  galleryPopupImage.src = cardImageUrl;
-  galleryPopup.classList.add("popup_opened");
-}
