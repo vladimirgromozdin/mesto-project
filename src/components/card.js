@@ -1,8 +1,8 @@
 import {showGalleryPopup} from "./modal";
 
-const cardAddNameInput = document.querySelector("#place-name");
+const cardAddNameInput = document.querySelector("#place-name-input");
 const cardList = document.querySelector(".elements__wrapper");
-const cardAddImageUrlInput = document.querySelector("#place-image-link");
+const cardAddImageUrlInput = document.querySelector("#place-image-link-input");
 
 
 // Create New Cards
