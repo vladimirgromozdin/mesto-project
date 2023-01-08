@@ -8,6 +8,8 @@
   font-family: "Inter", "Arial", sans-serif;
   font-size: 18px;
   padding: 0px;
+  transition-property: background-color, color, opacity;
+  transition-duration: 0.5s;
 }
 
 .popup__submit-button:hover {

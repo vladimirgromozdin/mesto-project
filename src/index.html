@@ -61,28 +61,35 @@
       <!--      Если оба поля прошли — активной.-->
       <h3 class="popup__title">Редактировать профиль</h3>
       <div class="popup__input-area">
-        <input
-          required
-          minlength="2"
-          max="40"
-          class="popup__input"
-          id="username-input"
-          name="username"
-          value=""
-        />
-        <span class="popup__input-error username-input-error"></span>
-        <input
-          required
-          minlength="2"
-          maxlength="200"
-          class="popup__input"
-          type="text"
-          name="status"
-          id="status-input"
-          value=""
-          pattern="^[a-zA-Z]+$"
-        />
-        <span class="popup__input-error status-input-error"></span>
+        <label class="popup__input-field">
+          <input
+            required
+            pattern="[A-Za-zА-Яа-я\s\-]+"
+            data-error-message="Разрешены только буквы, дефисы и пробелы"
+            minlength="2"
+            max="40"
+            class="popup__input"
+            id="username-input"
+            name="username"
+            value=""
+          />
+          <span class="popup__input-error username-input-error"></span>
+        </label>
+        <label class="popup__input-field">
+          <input
+            required
+            pattern="[A-Za-zА-Яа-я\s\-]+"
+            data-error-message="Разрешены только буквы, дефисы и пробелы"
+            minlength="2"
+            maxlength="200"
+            class="popup__input"
+            type="text"
+            name="status"
+            id="status-input"
+            value=""
+          />
+          <span class="popup__input-error status-input-error"></span>
+        </label>
       </div>
       <button
         type="submit"
@@ -101,35 +108,42 @@
       class="popup__close-button popup__close-button_content_new-card"
     ></button>
     <form class="popup__form popup__form_card" name="cardData" novalidate>
-<!--      Настройки валидации такие:-->
-<!--      оба поля обязательные;-->
-<!--      в поле «Название» должно быть от 2 до 30 символов;-->
-<!--      поле «Название» может содержать латинские буквы, кириллические буквы, знаки дефиса и пробелы (нужно проверить с помощью регулярных выражений и вывести кастомное сообщение об ошибке);-->
-<!--      в поле «Ссылка на картинку» должен быть URL.-->
+      <!--      TODO: Try displaying error message using position:relative and calc-->
+      <!--      Настройки валидации такие:-->
+      <!--      оба поля обязательные;-->
+      <!--      в поле «Название» должно быть от 2 до 30 символов;-->
+      <!--      поле «Название» может содержать латинские буквы, кириллические буквы, знаки дефиса и пробелы (нужно проверить с помощью регулярных выражений и вывести кастомное сообщение об ошибке);-->
+      <!--      в поле «Ссылка на картинку» должен быть URL.-->
       <h3 class="popup__title">Новое место</h3>
       <div class="popup__input-area">
-        <input
-          required
-          minlength="2"
-          maxlength="30"
-          class="popup__input"
-          type="text"
-          name="place-name"
-          id="place-name-input"
-          value=""
-          placeholder="Название"
-        />
-        <span class="popup__input-error place-name-input-error"></span>
-        <input
-          required
-          class="popup__input"
-          type="url"
-          name="place-image-link"
-          id="place-image-link-input"
-          value=""
-          placeholder="Ссылка на картинку"
-        />
-        <span class="popup__input-error place-image-link-input-error"></span>
+        <label class="popup__input-field">
+          <input
+            required
+            pattern="[A-Za-zА-Яа-я\s\-]+"
+            data-error-message="Разрешены только буквы, дефисы и пробелы"
+            minlength="2"
+            maxlength="30"
+            class="popup__input"
+            type="text"
+            name="place-name"
+            id="place-name-input"
+            value=""
+            placeholder="Название"
+          />
+          <span class="popup__input-error place-name-input-error"></span>
+        </label>
+        <label class="popup__input-field">
+          <input
+            required
+            class="popup__input"
+            type="url"
+            name="place-image-link"
+            id="place-image-link-input"
+            value=""
+            placeholder="Ссылка на картинку"
+          />
+          <span class="popup__input-error place-image-link-input-error"></span>
+        </label>
       </div>
       <button
         type="submit"
