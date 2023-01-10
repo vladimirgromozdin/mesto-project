@@ -28,3 +28,31 @@ export function showGalleryPopup(evt) {
   galleryPopupImage.src = cardImageUrl;
   galleryPopup.classList.add("popup_opened");
 }
+
+export const popupCloserControls = () => {
+  closePopupOnClicksOutsideOfModal();
+  closePopupsOnEsc()
+}
+
+// Track Clicks Outside of Card
+const closePopupOnClicksOutsideOfModal = () => {
+  const popup = document.querySelectorAll(".popup");
+  popup.forEach((item) => {
+    item.addEventListener("mousedown", (event) => {
+      if (!event.target.closest(".popup__container")) {
+        const openedPopup = document.querySelector('.popup_opened');
+        openedPopup.classList.remove('popup_opened');
+      }
+    })
+  })}
+
+
+// Close Any Open Popup on Esc
+const closePopupsOnEsc = () => {
+  document.addEventListener("keydown", (event) => {
+    const openedPopup = document.querySelector('.popup_opened');
+    if (event.key === 'Escape') {
+      openedPopup.classList.remove('popup_opened');
+    }
+  });
+}

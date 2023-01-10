@@ -3,6 +3,7 @@ import "../styles/index.css";
 import {initialCards} from "./data.js";
 import {createCard} from "./card.js";
 import {closePopup, showPopup} from "./modal.js";
+import {popupCloserControls} from "./modal.js";
 
 /** Constants, Query Selectors & Event Listeners */
 const profileUsername = document.querySelector(".profile__username");
@@ -21,7 +22,6 @@ const profileEditFormUsernameInput = document.querySelector("#username-input");
 const profileEditFormStatusInput = document.querySelector("#status-input");
 const profileFormElement = document.querySelector(".popup__form_profile");
 const cardAddForm = document.querySelector(".popup__form_card");
-const cardList = document.querySelector(".elements__wrapper");
 const cardAddImageUrlInput = document.querySelector("#place-image-link-input");
 const cardAddNameInput = document.querySelector("#place-name-input");
 
@@ -42,8 +42,13 @@ profileEditPopupCloseButton.addEventListener("click", () =>
   closePopup(profileEditPopup)
 );
 
+// Set EventListeners to Close Popup on ESC click
+// TODO: Figure out how to use propagation to make popupClose when Escape is clicked
+
+
 // New Card Addition Interactions
-newCardAddButton.addEventListener("click", () => {
+
+newCardAddButton.addEventListener("click", (event) => {
   showPopup(newCardAddPopup);
 });
 
@@ -52,7 +57,8 @@ newCardAddPopupCloseButton.addEventListener("click", () => {
 });
 
 
-/** Functions */
+// /** Functions */
+
 // Create Initial Cards
 initialCards.forEach(function (item) {
   let cardAddImageUrl = item.link;
@@ -161,3 +167,4 @@ const enableValidation = () => {
 // TODO: Pass enableValidation settings to the function as an object
 // TODO: Fix the issue with profile form button not being active by default even when the name and description are there
 enableValidation();
+popupCloserControls();

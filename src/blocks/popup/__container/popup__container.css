@@ -1,6 +1,7 @@
 .popup__container {
   display: block;
   position: relative;
+  cursor: default;
 }
 
 @media screen and (max-width: 550px) {

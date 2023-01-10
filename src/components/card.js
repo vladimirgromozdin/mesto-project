@@ -1,4 +1,4 @@
-import {showGalleryPopup} from "./modal";
+import {closePopup, showGalleryPopup} from "./modal";
 
 const cardAddNameInput = document.querySelector("#place-name-input");
 const cardList = document.querySelector(".elements__wrapper");
@@ -9,6 +9,7 @@ const cardAddImageUrlInput = document.querySelector("#place-image-link-input");
 export function createCard(cardAddImageUrl, cardAddName) {
   const cardTemplate = document.querySelector("#new-card-template").content;
   const cardElement = cardTemplate.cloneNode(true);
+  const cardForm = document.querySelector(".popup__form_card");
   let cardName = cardElement.querySelector(".element__caption");
   let cardImage = cardElement.querySelector(".element__image");
   let cardLikeButton = cardElement.querySelector(".element__like-button");
@@ -22,8 +23,7 @@ export function createCard(cardAddImageUrl, cardAddName) {
   cardLikeButton.addEventListener("click", toggleLikeButton);
   cardRemoveButton.addEventListener("click", removeCard);
   cardList.prepend(cardElement);
-  cardAddNameInput.value = "";
-  cardAddImageUrlInput.value = "";
+  cardForm.reset();
 }
 
 
