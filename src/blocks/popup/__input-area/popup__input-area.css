@@ -1,0 +1,10 @@
+.popup__input-area {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 32px;
+}
+
+.popup__input-area:last-of-type {
+  padding-bottom: 46px;
+}
