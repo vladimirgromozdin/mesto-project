@@ -1,6 +1,6 @@
 .popup__input-error {
   position: absolute;
-  top: calc(100% +4px);
+  top: calc(100% + 4px);
   padding-left: 2px;
   display: none;
   margin: 0px;

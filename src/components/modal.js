@@ -1,41 +1,43 @@
+/* -------- Global Constants -------- */
 const galleryPopupCloseButton = document.querySelector(
   ".popup__close-button_content_fullimage"
 );
 const galleryPopup = document.querySelector(".popup_content_fullimage");
+const profileUsername = document.querySelector(".profile__username");
+const profileStatus = document.querySelector(".profile__status");
+const profileEditButton = document.querySelector(".profile__editname-button");
+const profileEditPopup = document.querySelector(".popup_content_profile");
+const profileEditPopupCloseButton = document.querySelector(
+  ".popup__close-button_content_profile"
+);
+const profileEditFormUsernameInput = document.querySelector("#username-input");
+const profileEditFormStatusInput = document.querySelector("#status-input");
+const profileFormElement = document.querySelector(".popup__form_profile");
 
-// Gallery View Interactions
-galleryPopupCloseButton.addEventListener("click", () => {
-  closePopup(galleryPopup);
-});
-
-// Show Popup
-export function showPopup(item) {
-  item.classList.add("popup_opened");
-}
-
-// Close Popup
-export function closePopup(item) {
-  item.classList.remove("popup_opened");
-}
-
-// Show Full Card Image
+/* -------- Show Gallery Image Popup -------- */
 export function showGalleryPopup(evt) {
   const cardImageUrl = evt.target.src;
   const cardImageCaption = document.querySelector(".popup__caption");
-  const cardFullscreenName = evt.target.alt;
-  cardImageCaption.textContent = cardFullscreenName;
+  cardImageCaption.textContent = evt.target.alt;
   const galleryPopupImage = document.querySelector(".popup__image");
   galleryPopupImage.src = cardImageUrl;
   galleryPopup.classList.add("popup_opened");
 }
+galleryPopupCloseButton.addEventListener("click", () => {
+  closePopup(galleryPopup);
+});
 
-export const popupCloserControls = () => {
-  closePopupOnClicksOutsideOfModal();
-  closePopupsOnEsc()
+/* -------- Show and Close Popup -------- */
+export function showPopup(item) {
+  item.classList.add("popup_opened");
+  addPopupCloserControls();
 }
 
-// Track Clicks Outside of Card
-const closePopupOnClicksOutsideOfModal = () => {
+export function closePopup(item) {
+  item.classList.remove("popup_opened");
+}
+
+function closePopupOnClicksOutsideOfModal() {
   const popup = document.querySelectorAll(".popup");
   popup.forEach((item) => {
     item.addEventListener("mousedown", (event) => {
@@ -46,13 +48,40 @@ const closePopupOnClicksOutsideOfModal = () => {
     })
   })}
 
-
-// Close Any Open Popup on Esc
-const closePopupsOnEsc = () => {
+function closePopupsOnEsc() {
   document.addEventListener("keydown", (event) => {
     const openedPopup = document.querySelector('.popup_opened');
-    if (event.key === 'Escape') {
+    if (openedPopup !== null && event.key === 'Escape') {
       openedPopup.classList.remove('popup_opened');
     }
   });
 }
+
+export function addPopupCloserControls() {
+  closePopupOnClicksOutsideOfModal();
+  closePopupsOnEsc()
+}
+
+
+
+/* -------- Profile Edit Form -------- */
+profileEditButton.addEventListener("click", () => {
+  profileEditFormUsernameInput.value = profileUsername.textContent;
+  profileEditFormStatusInput.value = profileStatus.textContent;
+  showPopup(profileEditPopup);
+});
+
+profileEditPopupCloseButton.addEventListener("click", () =>
+  closePopup(profileEditPopup)
+);
+export function formProfileEditSubmitHandler(evt) {
+  evt.preventDefault();
+  profileUsername.textContent = profileEditFormUsernameInput.value;
+  profileStatus.textContent = profileEditFormStatusInput.value;
+  closePopup(profileEditPopup);
+}
+
+profileFormElement.addEventListener("submit", formProfileEditSubmitHandler);
+
+
+

@@ -1,11 +1,19 @@
-import {closePopup, showGalleryPopup} from "./modal";
+import {closePopup, showGalleryPopup, showPopup} from "./modal";
+import {initialCards} from "./data";
+import {toggleLikeButton} from "./utils";
 
-const cardAddNameInput = document.querySelector("#place-name-input");
+/* -------- Global Constants -------- */
 const cardList = document.querySelector(".elements__wrapper");
+const cardAddForm = document.querySelector(".popup__form_card");
 const cardAddImageUrlInput = document.querySelector("#place-image-link-input");
+const cardAddNameInput = document.querySelector("#place-name-input");
+const newCardAddButton = document.querySelector(".profile__add-new-button");
+const newCardAddPopup = document.querySelector(".popup_content_new-card");
+const newCardAddPopupCloseButton = document.querySelector(
+  ".popup__close-button_content_new-card"
+);
 
-
-// Create New Cards
+/* -------- Creating New Cards -------- */
 export function createCard(cardAddImageUrl, cardAddName) {
   const cardTemplate = document.querySelector("#new-card-template").content;
   const cardElement = cardTemplate.cloneNode(true);
@@ -26,13 +34,32 @@ export function createCard(cardAddImageUrl, cardAddName) {
   cardForm.reset();
 }
 
-
-// Toggle Like Buttons
-export function toggleLikeButton(evt) {
-  evt.target.classList.toggle("element__like-button_active");
+function cardAddSubmitHandler(evt) {
+  evt.preventDefault();
+  const cardAddCurrentImageUrl = cardAddImageUrlInput.value;
+  const cardAddCurrentName = cardAddNameInput.value;
+  createCard(cardAddCurrentImageUrl, cardAddCurrentName);
+  closePopup(newCardAddPopup);
 }
 
-//Remove Cards
+cardAddForm.addEventListener("submit", cardAddSubmitHandler);
+
+/* -------- Loading Initial Cars on The Page -------- */
+initialCards.forEach(function (item) {
+  let cardAddImageUrl = item.link;
+  let cardAddName = item.name;
+  createCard(cardAddImageUrl, cardAddName);
+});
+
+newCardAddButton.addEventListener("click", () => {
+  showPopup(newCardAddPopup);
+});
+
+newCardAddPopupCloseButton.addEventListener("click", () => {
+  closePopup(newCardAddPopup);
+});
+
+/* -------- Removing Cards -------- */
 export function removeCard(evt) {
   evt.target.closest(".element").remove();
 }
