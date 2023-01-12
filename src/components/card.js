@@ -34,15 +34,16 @@ export function createCard(cardAddImageUrl, cardAddName) {
   cardForm.reset();
 }
 
-function cardAddSubmitHandler(evt) {
+function addCardSubmitHandler(evt) {
   evt.preventDefault();
   const cardAddCurrentImageUrl = cardAddImageUrlInput.value;
   const cardAddCurrentName = cardAddNameInput.value;
+  const popupSubmitButton = document.querySelector('.popup__submit-button');
   createCard(cardAddCurrentImageUrl, cardAddCurrentName);
   closePopup(newCardAddPopup);
 }
 
-cardAddForm.addEventListener("submit", cardAddSubmitHandler);
+cardAddForm.addEventListener("submit", addCardSubmitHandler);
 
 /* -------- Loading Initial Cars on The Page -------- */
 initialCards.forEach(function (item) {

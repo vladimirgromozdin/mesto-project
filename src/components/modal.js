@@ -1,3 +1,5 @@
+import {disableSubmitButton} from "./validate";
+
 /* -------- Global Constants -------- */
 const galleryPopupCloseButton = document.querySelector(
   ".popup__close-button_content_fullimage"
@@ -22,6 +24,7 @@ export function showGalleryPopup(evt) {
   const galleryPopupImage = document.querySelector(".popup__image");
   galleryPopupImage.src = cardImageUrl;
   galleryPopup.classList.add("popup_opened");
+  addPopupCloserControls();
 }
 galleryPopupCloseButton.addEventListener("click", () => {
   closePopup(galleryPopup);
@@ -30,38 +33,65 @@ galleryPopupCloseButton.addEventListener("click", () => {
 /* -------- Show and Close Popup -------- */
 export function showPopup(item) {
   item.classList.add("popup_opened");
+  disableSubmitButton();
   addPopupCloserControls();
 }
 
 export function closePopup(item) {
   item.classList.remove("popup_opened");
+  removeOverlayListener();
+  removeEscapeClicks ();
+}
+
+function trackClicksOnOverlay(event) {
+  if (!event.target.closest(".popup__container")) {
+    const openedPopup = document.querySelector('.popup_opened');
+    openedPopup.classList.remove('popup_opened');
+    removeOverlayListener();
+  }
+}
+
+function trackClicksOnOverlayHandler() {
+  trackClicksOnOverlay(event);
 }
 
 function closePopupOnClicksOutsideOfModal() {
   const popup = document.querySelectorAll(".popup");
   popup.forEach((item) => {
-    item.addEventListener("mousedown", (event) => {
-      if (!event.target.closest(".popup__container")) {
-        const openedPopup = document.querySelector('.popup_opened');
-        openedPopup.classList.remove('popup_opened');
-      }
-    })
+    item.addEventListener("mousedown", trackClicksOnOverlayHandler);
   })}
 
+function removeOverlayListener() {
+  const popup = document.querySelectorAll(".popup");
+  popup.forEach((item) => {
+    item.removeEventListener("mousedown", trackClicksOnOverlayHandler);
+    })
+}
+
 function closePopupsOnEsc() {
-  document.addEventListener("keydown", (event) => {
-    const openedPopup = document.querySelector('.popup_opened');
-    if (openedPopup !== null && event.key === 'Escape') {
-      openedPopup.classList.remove('popup_opened');
-    }
-  });
+  document.addEventListener("keydown", trackEscapeCLicksHandler);
+}
+
+function trackEscapeClicks(event) {
+  const openedPopup = document.querySelector('.popup_opened');
+  if (openedPopup !== null && event.key === 'Escape') {
+    removeOverlayListener();
+    openedPopup.classList.remove('popup_opened');
+  }
+}
+
+function removeEscapeClicks () {
+  document.removeEventListener("keydown", trackEscapeCLicksHandler);
+}
+
+function trackEscapeCLicksHandler() {
+  trackEscapeClicks(event)
 }
 
 export function addPopupCloserControls() {
   closePopupOnClicksOutsideOfModal();
   closePopupsOnEsc()
 }
-
 
 
 /* -------- Profile Edit Form -------- */

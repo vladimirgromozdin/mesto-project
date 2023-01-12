@@ -24,19 +24,25 @@ function isValid(formElement, inputElement, config) {
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage, config);
   } else {
-    // Если проходит, скроем
     hideInputError(formElement, inputElement, config);
   }
 };
 
 /* -------- Check Altogether Validity to Unblock Submit Button -------- */
+
+export function disableSubmitButton() {
+  const buttonClass = document.querySelector('.popup__submit-button_content_new-card');
+  buttonClass.disabled = true;
+  buttonClass.classList.add("popup__submit-button_inactive");
+}
+
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   })
 };
 
-function toggleButtonState(inputList, buttonElement, config) {
+export function toggleButtonState(inputList, buttonElement, config) {
   if (hasInvalidInput(inputList)) {
     buttonElement.disabled = true;
     buttonElement.classList.add(config.inactiveButtonClass);
