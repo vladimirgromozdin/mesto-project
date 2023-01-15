@@ -1,4 +1,12 @@
-/* -------- Toggling Like Button -------- */
-export function toggleLikeButton(evt) {
-  evt.target.classList.toggle("element__like-button_active");
+import {addPopupCloserControls} from "./modal";
+import {removeEscapeClicks} from "./modal";
+
+export function showPopup(item) {
+  item.classList.add("popup_opened");
+  addPopupCloserControls();
+}
+
+export function closePopup(item) {
+  item.classList.remove("popup_opened");
+  removeEscapeClicks();
 }

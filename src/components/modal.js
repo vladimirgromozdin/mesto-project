@@ -1,6 +1,7 @@
-import {disableSubmitButton} from "./validate";
+import {showPopup, closePopup} from "./utils.js";
 
 /* -------- Global Constants -------- */
+const popups= document.querySelectorAll(".popup");
 const galleryPopupCloseButton = document.querySelector(
   ".popup__close-button_content_fullimage"
 );
@@ -14,79 +15,51 @@ const profileEditPopupCloseButton = document.querySelector(
 );
 const profileEditFormUsernameInput = document.querySelector("#username-input");
 const profileEditFormStatusInput = document.querySelector("#status-input");
-const profileFormElement = document.querySelector(".popup__form_profile");
+const profileFormElement = document.forms['profileForm'];
+const cardImageCaption = document.querySelector(".popup__caption");
+const galleryPopupImage = document.querySelector(".popup__image");
 
 /* -------- Show Gallery Image Popup -------- */
 export function showGalleryPopup(evt) {
   const cardImageUrl = evt.target.src;
-  const cardImageCaption = document.querySelector(".popup__caption");
   cardImageCaption.textContent = evt.target.alt;
-  const galleryPopupImage = document.querySelector(".popup__image");
   galleryPopupImage.src = cardImageUrl;
-  galleryPopup.classList.add("popup_opened");
-  addPopupCloserControls();
+  showPopup(galleryPopup);
 }
 galleryPopupCloseButton.addEventListener("click", () => {
   closePopup(galleryPopup);
 });
 
 /* -------- Show and Close Popup -------- */
-export function showPopup(item) {
-  item.classList.add("popup_opened");
-  disableSubmitButton();
-  addPopupCloserControls();
-}
 
-export function closePopup(item) {
-  item.classList.remove("popup_opened");
-  removeOverlayListener();
-  removeEscapeClicks ();
-}
 
 function trackClicksOnOverlay(event) {
   if (!event.target.closest(".popup__container")) {
     const openedPopup = document.querySelector('.popup_opened');
-    openedPopup.classList.remove('popup_opened');
-    removeOverlayListener();
+    closePopup(openedPopup);
   }
 }
 
-function trackClicksOnOverlayHandler() {
-  trackClicksOnOverlay(event);
-}
-
 function closePopupOnClicksOutsideOfModal() {
-  const popup = document.querySelectorAll(".popup");
-  popup.forEach((item) => {
-    item.addEventListener("mousedown", trackClicksOnOverlayHandler);
+  popups.forEach((item) => {
+    item.addEventListener("mousedown", trackClicksOnOverlay);
   })}
 
-function removeOverlayListener() {
-  const popup = document.querySelectorAll(".popup");
-  popup.forEach((item) => {
-    item.removeEventListener("mousedown", trackClicksOnOverlayHandler);
-    })
-}
-
 function closePopupsOnEsc() {
-  document.addEventListener("keydown", trackEscapeCLicksHandler);
+  document.addEventListener("keydown", trackEscapeClicks);
 }
 
 function trackEscapeClicks(event) {
   const openedPopup = document.querySelector('.popup_opened');
   if (openedPopup !== null && event.key === 'Escape') {
-    removeOverlayListener();
-    openedPopup.classList.remove('popup_opened');
+    closePopup(openedPopup);
   }
 }
 
-function removeEscapeClicks () {
-  document.removeEventListener("keydown", trackEscapeCLicksHandler);
+export function removeEscapeClicks () {
+  document.removeEventListener("keydown", trackEscapeClicks);
 }
 
-function trackEscapeCLicksHandler() {
-  trackEscapeClicks(event)
-}
 
 export function addPopupCloserControls() {
   closePopupOnClicksOutsideOfModal();
@@ -104,14 +77,14 @@ profileEditButton.addEventListener("click", () => {
 profileEditPopupCloseButton.addEventListener("click", () =>
   closePopup(profileEditPopup)
 );
-export function formProfileEditSubmitHandler(evt) {
+export function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileUsername.textContent = profileEditFormUsernameInput.value;
   profileStatus.textContent = profileEditFormStatusInput.value;
   closePopup(profileEditPopup);
 }
 
-profileFormElement.addEventListener("submit", formProfileEditSubmitHandler);
+profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 
 
 

@@ -1,6 +1,7 @@
-import {closePopup, showGalleryPopup, showPopup} from "./modal";
+import {showGalleryPopup} from "./modal";
+import {showPopup, closePopup} from "./utils";
 import {initialCards} from "./data";
-import {toggleLikeButton} from "./utils";
+import {disableSubmitButton} from "./validate";
 
 /* -------- Global Constants -------- */
 const cardList = document.querySelector(".elements__wrapper");
@@ -12,16 +13,15 @@ const newCardAddPopup = document.querySelector(".popup_content_new-card");
 const newCardAddPopupCloseButton = document.querySelector(
   ".popup__close-button_content_new-card"
 );
+const cardTemplate = document.querySelector("#new-card-template").content;
 
 /* -------- Creating New Cards -------- */
-export function createCard(cardAddImageUrl, cardAddName) {
-  const cardTemplate = document.querySelector("#new-card-template").content;
+export function getCard(cardAddImageUrl, cardAddName) {
   const cardElement = cardTemplate.cloneNode(true);
-  const cardForm = document.querySelector(".popup__form_card");
-  let cardName = cardElement.querySelector(".element__caption");
-  let cardImage = cardElement.querySelector(".element__image");
-  let cardLikeButton = cardElement.querySelector(".element__like-button");
-  let cardRemoveButton = cardElement.querySelector(
+  const cardName = cardElement.querySelector(".element__caption");
+  const cardImage = cardElement.querySelector(".element__image");
+  const cardLikeButton = cardElement.querySelector(".element__like-button");
+  const cardRemoveButton = cardElement.querySelector(
     ".element__trash-bin-button"
   );
   cardImage.src = cardAddImageUrl;
@@ -30,25 +30,33 @@ export function createCard(cardAddImageUrl, cardAddName) {
   cardImage.addEventListener("click", showGalleryPopup);
   cardLikeButton.addEventListener("click", toggleLikeButton);
   cardRemoveButton.addEventListener("click", removeCard);
-  cardList.prepend(cardElement);
-  cardForm.reset();
+  return cardElement;
 }
 
-function addCardSubmitHandler(evt) {
+
+export function createCard(cardAddImageUrl, cardAddName) {
+  const cardElement = getCard(cardAddImageUrl, cardAddName)
+  cardList.prepend(cardElement);
+}
+
+function handleNewCardSubmission(evt) {
   evt.preventDefault();
   const cardAddCurrentImageUrl = cardAddImageUrlInput.value;
   const cardAddCurrentName = cardAddNameInput.value;
-  const popupSubmitButton = document.querySelector('.popup__submit-button');
   createCard(cardAddCurrentImageUrl, cardAddCurrentName);
+  disableSubmitButton(evt.submitter, {
+    inactiveButtonClass: 'popup__submit-button_inactive',
+    },)
+  evt.target.reset();
   closePopup(newCardAddPopup);
 }
 
-cardAddForm.addEventListener("submit", addCardSubmitHandler);
+cardAddForm.addEventListener("submit", handleNewCardSubmission);
 
 /* -------- Loading Initial Cars on The Page -------- */
 initialCards.forEach(function (item) {
-  let cardAddImageUrl = item.link;
-  let cardAddName = item.name;
+  const cardAddImageUrl = item.link;
+  const cardAddName = item.name;
   createCard(cardAddImageUrl, cardAddName);
 });
 
@@ -63,4 +71,9 @@ newCardAddPopupCloseButton.addEventListener("click", () => {
 /* -------- Removing Cards -------- */
 export function removeCard(evt) {
   evt.target.closest(".element").remove();
+}
+
+/* -------- Liking Cards -------- */
+function toggleLikeButton(evt) {
+  evt.target.classList.toggle("element__like-button_active");
 }

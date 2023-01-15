@@ -30,10 +30,9 @@ function isValid(formElement, inputElement, config) {
 
 /* -------- Check Altogether Validity to Unblock Submit Button -------- */
 
-export function disableSubmitButton() {
-  const buttonClass = document.querySelector('.popup__submit-button_content_new-card');
-  buttonClass.disabled = true;
-  buttonClass.classList.add("popup__submit-button_inactive");
+export function disableSubmitButton(buttonElement, config) {
+  buttonElement.disabled = true;
+  buttonElement.classList.add(config.inactiveButtonClass);
 }
 
 function hasInvalidInput(inputList) {
@@ -44,8 +43,7 @@ function hasInvalidInput(inputList) {
 
 export function toggleButtonState(inputList, buttonElement, config) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.disabled = true;
-    buttonElement.classList.add(config.inactiveButtonClass);
+    disableSubmitButton(buttonElement, config)
   } else {
     buttonElement.disabled = false;
     buttonElement.classList.remove(config.inactiveButtonClass);
