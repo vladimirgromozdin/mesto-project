@@ -24,6 +24,7 @@ export function showGalleryPopup(evt) {
   const cardImageUrl = evt.target.src;
   cardImageCaption.textContent = evt.target.alt;
   galleryPopupImage.src = cardImageUrl;
+  galleryPopupImage.alt = evt.target.alt;
   showPopup(galleryPopup);
 }
 galleryPopupCloseButton.addEventListener("click", () => {
@@ -40,30 +41,31 @@ function trackClicksOnOverlay(event) {
   }
 }
 
-function closePopupOnClicksOutsideOfModal() {
+export function closePopupOnClicksOutsideOfModal() {
   popups.forEach((item) => {
     item.addEventListener("mousedown", trackClicksOnOverlay);
   })}
 
-function closePopupsOnEsc() {
+function setEscapeListener() {
   document.addEventListener("keydown", trackEscapeClicks);
 }
 
 function trackEscapeClicks(event) {
-  const openedPopup = document.querySelector('.popup_opened');
-  if (openedPopup !== null && event.key === 'Escape') {
+  if (event.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    if (openedPopup !== null) {
     closePopup(openedPopup);
   }
 }
+}
 
-export function removeEscapeClicks () {
+export function removeEscapeListener () {
   document.removeEventListener("keydown", trackEscapeClicks);
 }
 
 
 export function addPopupCloserControls() {
-  closePopupOnClicksOutsideOfModal();
-  closePopupsOnEsc()
+  setEscapeListener()
 }
 
 

@@ -1,7 +1,7 @@
 // Webpack Dependencies
 import "../styles/index.css";
-import {popupCloserControls} from "./modal";
 import {enableValidation} from "./validate";
+import {closePopupOnClicksOutsideOfModal} from "./modal";
 import {createCard} from "./card";
 
 /* -------- Enable Form Validation -------- */
@@ -13,3 +13,5 @@ enableValidation({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_active'
 });
+
+closePopupOnClicksOutsideOfModal();

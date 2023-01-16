@@ -1,5 +1,5 @@
+import {removeEscapeListener} from "./modal";
 import {addPopupCloserControls} from "./modal";
-import {removeEscapeClicks} from "./modal";
 
 export function showPopup(item) {
   item.classList.add("popup_opened");
@@ -8,5 +8,5 @@ export function showPopup(item) {
 
 export function closePopup(item) {
   item.classList.remove("popup_opened");
-  removeEscapeClicks();
+  removeEscapeListener();
 }
