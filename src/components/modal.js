@@ -36,8 +36,7 @@ galleryPopupCloseButton.addEventListener("click", () => {
 
 function trackClicksOnOverlay(event) {
   if (!event.target.closest(".popup__container")) {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
+    closePopup(event.target);
   }
 }
 
