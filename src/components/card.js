@@ -54,11 +54,11 @@ function handleNewCardSubmission(evt) {
 cardAddForm.addEventListener("submit", handleNewCardSubmission);
 
 /* -------- Loading Initial Cars on The Page -------- */
-initialCards.forEach(function (item) {
-  const cardAddImageUrl = item.link;
-  const cardAddName = item.name;
-  createCard(cardAddImageUrl, cardAddName);
-});
+// initialCards.forEach(function (item) {
+//   const cardAddImageUrl = item.link;
+//   const cardAddName = item.name;
+//   createCard(cardAddImageUrl, cardAddName);
+// });
 
 newCardAddButton.addEventListener("click", () => {
   showPopup(newCardAddPopup);

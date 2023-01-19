@@ -2,7 +2,11 @@
 import "../styles/index.css";
 import {enableValidation} from "./validate";
 import {closePopupOnClicksOutsideOfModal} from "./modal";
-import {createCard} from "./card";
+// import {createCard} from "./card";
+import {getUser, loadInitialCards} from "./api";
+
+getUser();
+loadInitialCards();
 
 /* -------- Enable Form Validation -------- */
 enableValidation({
