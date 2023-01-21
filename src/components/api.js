@@ -15,7 +15,7 @@ const profileAvatar = document.querySelector(".profile__avatar");
 const profileUsername = document.querySelector(".profile__username");
 const profileStatus = document.querySelector(".profile__status");
 
-/* -------- Load Profile Info -------- */
+/* -------- Load Profile Info from Server -------- */
 export function getUserInfo() {
   return fetch(`${config.baseUrl}/users/me`, {
     headers: config.headers
@@ -36,7 +36,8 @@ export function getUserInfo() {
     });
 }
 
-/* -------- Load Initial Cards -------- */
+/* -------- Load Initial Cards for Server -------- */
+// TODO: Look into sorting the cards object so the most recent ones are shown on top of the page
 export function loadInitialCards () {
   return fetch(`${config.baseUrl}/cards`, {
     headers: config.headers
@@ -77,3 +78,20 @@ export function sendUserInfo (profileName, profileStatus) {
     })
 }
 
+/* -------- Upload New Card to Server -------- */
+export function sendNewCardToServer (cardName, cardLink) {
+  return fetch(`${config.baseUrl}/cards`, {
+    method: 'POST',
+    headers: config.headers,
+    body: JSON.stringify({
+      name: cardName,
+      link: cardLink,
+    })
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(`При отправке новой карточки сервер вернул: ${res.status}`);
+    })
+}

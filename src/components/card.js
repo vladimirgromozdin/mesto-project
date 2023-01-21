@@ -2,6 +2,7 @@ import {showGalleryPopup} from "./modal";
 import {showPopup, closePopup} from "./utils";
 import {initialCards} from "./data";
 import {disableSubmitButton} from "./validate";
+import {sendNewCardToServer} from "./api";
 
 /* -------- Global Constants -------- */
 const cardList = document.querySelector(".elements__wrapper");
@@ -47,18 +48,13 @@ function handleNewCardSubmission(evt) {
   disableSubmitButton(evt.submitter, {
     inactiveButtonClass: 'popup__submit-button_inactive',
     },)
+  sendNewCardToServer (cardAddCurrentName, cardAddCurrentImageUrl);
   evt.target.reset();
   closePopup(newCardAddPopup);
 }
 
 cardAddForm.addEventListener("submit", handleNewCardSubmission);
 
-/* -------- Loading Initial Cars on The Page -------- */
-// initialCards.forEach(function (item) {
-//   const cardAddImageUrl = item.link;
-//   const cardAddName = item.name;
-//   createCard(cardAddImageUrl, cardAddName);
-// });
 
 newCardAddButton.addEventListener("click", () => {
   showPopup(newCardAddPopup);
