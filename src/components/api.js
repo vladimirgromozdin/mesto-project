@@ -3,7 +3,7 @@ import {createCard} from "./card";
 
 /* -------- API Config -------- */
 const config = {
-  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-18/',
+  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-18',
   headers: {
     authorization: 'f14db4e9-636d-4f4a-a139-30505d4235b0',
     'Content-Type': 'application/json'
@@ -11,12 +11,12 @@ const config = {
 }
 
 /* -------- Constants -------- */
+const profileAvatar = document.querySelector(".profile__avatar");
 const profileUsername = document.querySelector(".profile__username");
 const profileStatus = document.querySelector(".profile__status");
-const profileAvatar = document.querySelector(".profile__avatar");
 
 /* -------- Load Profile Info -------- */
-export function getUser() {
+export function getUserInfo() {
   return fetch(`${config.baseUrl}/users/me`, {
     headers: config.headers
   })
@@ -58,3 +58,22 @@ export function loadInitialCards () {
       console.log(err);
     });
 }
+
+/* -------- Upload Profile Edits to Server -------- */
+export function sendUserInfo (profileName, profileStatus) {
+  return fetch (`${config.baseUrl}/users/me`, {
+    method: 'PATCH',
+    headers: config.headers,
+    body: JSON.stringify({
+      name: profileName,
+      about: profileStatus,
+    })
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(`При отправке данных пользователя сервер вернул: ${res.status}`);
+    })
+}
+

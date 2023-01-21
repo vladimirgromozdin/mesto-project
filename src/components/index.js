@@ -3,9 +3,9 @@ import "../styles/index.css";
 import {enableValidation} from "./validate";
 import {closePopupOnClicksOutsideOfModal} from "./modal";
 // import {createCard} from "./card";
-import {getUser, loadInitialCards} from "./api";
+import {getUserInfo, loadInitialCards} from "./api";
 
-getUser();
+getUserInfo();
 loadInitialCards();
 
 /* -------- Enable Form Validation -------- */

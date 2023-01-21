@@ -1,4 +1,5 @@
 import {showPopup, closePopup} from "./utils.js";
+import {sendUserInfo} from "./api";
 
 /* -------- Global Constants -------- */
 const popups= document.querySelectorAll(".popup");
@@ -82,6 +83,9 @@ export function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileUsername.textContent = profileEditFormUsernameInput.value;
   profileStatus.textContent = profileEditFormStatusInput.value;
+  const profileName = profileEditFormUsernameInput.value;
+  const profileDescription = profileEditFormStatusInput.value;
+  sendUserInfo(profileName, profileDescription);
   closePopup(profileEditPopup);
 }
 
