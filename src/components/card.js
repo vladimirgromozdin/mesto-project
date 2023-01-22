@@ -15,9 +15,10 @@ const newCardAddPopupCloseButton = document.querySelector(
   ".popup__close-button_content_new-card"
 );
 const cardTemplate = document.querySelector("#new-card-template").content;
+const removalConfirmationPopup = document.querySelector(".popup_content_remove-card-confirmation");
 
 /* -------- Creating New Cards -------- */
-export function getCard(cardAddImageUrl, cardAddName, likesCounter, cardId, isLiked) {
+export function getCard(cardAddImageUrl, cardAddName, likesCounter, cardId) {
   const cardElement = cardTemplate.cloneNode(true);
   const currentCard = cardElement.querySelector(".element");
   const cardName = cardElement.querySelector(".element__caption");
@@ -32,19 +33,24 @@ export function getCard(cardAddImageUrl, cardAddName, likesCounter, cardId, isLi
   cardImage.alt = cardAddName;
   cardName.textContent = cardAddName;
   cardLikesCounter.textContent = likesCounter;
-  if (isLiked) {
-    cardLikeButton.classList.add("element__like-button_active");
-  }
   cardImage.addEventListener("click", showGalleryPopup);
   cardLikeButton.addEventListener("click", toggleLikeButton);
-  cardRemoveButton.addEventListener("click", removeCard);
+  cardRemoveButton.addEventListener("click", () => {
+    showPopup(removalConfirmationPopup, cardId)
+  });
   return cardElement;
 }
 
 
-export function createCard(cardAddImageUrl, cardAddName, likesCounter, cardId, isLiked) {
-  const cardElement = getCard(cardAddImageUrl, cardAddName, likesCounter, cardId, isLiked)
+export function createCard(cardAddImageUrl, cardAddName, likesCounter, cardId, isOwned, isLiked) {
+  const cardElement = getCard(cardAddImageUrl, cardAddName, likesCounter, cardId)
   cardList.prepend(cardElement);
+  if (isLiked) {
+    displayLike(cardId);
+  }
+  if (!isOwned) {
+    hideRemoveButton(cardId);
+  }
 }
 
 function handleNewCardSubmission(evt) {
@@ -72,8 +78,14 @@ newCardAddPopupCloseButton.addEventListener("click", () => {
 });
 
 /* -------- Removing Cards -------- */
-export function removeCard(evt) {
-  evt.target.closest(".element").remove();
+export function checkOwner(card, me) {
+  return card.owner.name === me;
+}
+
+export function removeCard(cardId) {
+  const targetCard = document.querySelector(`[data-card-id="${cardId}"]`);
+  console.log(targetCard);
+  targetCard.remove();
 }
 
 /* -------- Liking Cards -------- */
@@ -84,15 +96,30 @@ export function checkIfLikedAlreadyByMe(likes, me) {
   return likes.some(item => item.name === me);
 }
 
+export function displayLike(cardId) {
+  const currentCard = document.querySelector(`[data-card-id="${cardId}"]`);
+  const cardLikeButton = currentCard.querySelector(".element__like-button");
+  cardLikeButton.classList.toggle("element__like-button_active");
+}
+
+// TODO: Figure out how to display remove card button by default,
+//  because right now it is only visible
+//  after the page had been refreshed
+export function hideRemoveButton(cardId) {
+  const currentCard = document.querySelector(`[data-card-id="${cardId}"]`);
+  const cardRemoveButton = currentCard.querySelector(".element__trash-bin-button");
+  cardRemoveButton.style.display = 'none';
+}
+
 function toggleLikeButton(evt) {
   const currentCard = evt.target.closest(".element");
   const cardId = currentCard.dataset.cardId;
   console.log(evt.target.classList);
   if (evt.target.classList.contains("element__like-button_active")) {
-    evt.target.classList.toggle("element__like-button_active");
+    evt.target.classList.remove("element__like-button_active");
     sendCardLikeRevokeToServer(evt, cardId);
   } else {
-    evt.target.classList.toggle("element__like-button_active");
+    evt.target.classList.add("element__like-button_active");
     sendCardLikeToServer(evt, cardId);
   }
 

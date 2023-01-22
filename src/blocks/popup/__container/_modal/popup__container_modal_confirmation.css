@@ -1,0 +1,14 @@
+.popup__container_modal_confirmation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 430px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 550px) {
+  .popup__container_modal_confirmation {
+    max-width: 282px;
+  }
+}

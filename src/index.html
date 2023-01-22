@@ -25,10 +25,10 @@
         />
         <div class="profile__description">
           <div class="profile__username-area">
-            <h1 class="profile__username">Жак-Ив Кусто</h1>
+            <h1 class="profile__username"></h1>
             <button class="profile__editname-button"></button>
           </div>
-          <p class="profile__status">Исследователь океана</p>
+          <p class="profile__status"></p>
         </div>
       </div>
       <button type="button" class="profile__add-new-button"></button>
@@ -164,9 +164,24 @@
     <p class="popup__caption"></p>
   </div>
 </div>
+<!-- Remove Card Confirmation Popup -->
+<div class="popup popup_content_remove-card-confirmation popup_opacity_dark">
+  <div class="popup__container popup__container_modal_confirmation">
+    <button
+      type="button"
+      class="popup__close-button popup__close-button_content_removal-confirmation"
+    ></button>
+    <p class="popup__confirmation-message">Вы уверены?</p>
+    <button
+      type="button"
+      class="popup__confirmation-button"
+    >Да</button>
+    <p class="popup__caption"></p>
+  </div>
+</div>
 <!-- New Card Template -->
 <template id="new-card-template">
-  <li class="element" data-card-id=cardId" >
+  <li class="element" data-card-id="cardId" >
     <button type="button" class="element__trash-bin-button"></button>
     <img
       class="element__image"

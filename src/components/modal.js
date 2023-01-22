@@ -1,5 +1,6 @@
 import {showPopup, closePopup} from "./utils.js";
-import {sendUserInfo} from "./api";
+import {sendUserInfo, removeCardFromServer} from "./api";
+import {removeCard} from "./card";
 
 /* -------- Global Constants -------- */
 const popups= document.querySelectorAll(".popup");
@@ -14,11 +15,30 @@ const profileEditPopup = document.querySelector(".popup_content_profile");
 const profileEditPopupCloseButton = document.querySelector(
   ".popup__close-button_content_profile"
 );
+const removalConfirmationPopup = document.querySelector('.popup__container_modal_confirmation')
+const removalPopupContent = document.querySelector('.popup_content_remove-card-confirmation');
+const removalConfirmationPopupCloseButton = removalConfirmationPopup.querySelector('.popup__close-button');
+const removalConfirmationYesButton = document.querySelector('.popup__confirmation-button');
 const profileEditFormUsernameInput = document.querySelector("#username-input");
 const profileEditFormStatusInput = document.querySelector("#status-input");
 const profileFormElement = document.forms['profileForm'];
 const cardImageCaption = document.querySelector(".popup__caption");
 const galleryPopupImage = document.querySelector(".popup__image");
+
+/* -------- Show Removal Confirmation Popup -------- */
+removalConfirmationPopupCloseButton.addEventListener('click', () => {
+  const openedPopup = document.querySelector(".popup_opened");
+  closePopup(openedPopup);
+});
+
+/* -------- Add Listener to the Removal Confirmation Button -------- */
+removalConfirmationYesButton.addEventListener("click", () => {
+  const cardId = removalPopupContent.closest('.popup_content_remove-card-confirmation').dataset.id;
+  const openedPopup = document.querySelector(".popup_opened");
+  removeCard(cardId);
+  removeCardFromServer(cardId);
+  closePopup(openedPopup);
+})
 
 /* -------- Show Gallery Image Popup -------- */
 export function showGalleryPopup(evt) {
@@ -90,6 +110,5 @@ export function handleProfileFormSubmit(evt) {
 }
 
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
-
 
 

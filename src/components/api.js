@@ -1,5 +1,5 @@
 /* -------- Imports -------- */
-import {checkIfLikedAlreadyByMe, createCard, updateLikesCounter} from "./card";
+import {checkIfLikedAlreadyByMe, checkOwner, createCard, displayLike, updateLikesCounter} from "./card";
 
 /* -------- API Config -------- */
 const config = {
@@ -54,8 +54,9 @@ export function loadInitialCards () {
         const cardAddName = card.name;
         const likesCounter = card.likes.length;
         const cardId = card._id;
+        const isOwned = checkOwner(card, profileUsername.textContent)
         const isLiked = checkIfLikedAlreadyByMe(card.likes, profileUsername.textContent);
-        createCard(cardAddImageUrl, cardAddName, likesCounter, cardId, isLiked);
+        createCard(cardAddImageUrl, cardAddName, likesCounter, cardId, isOwned, isLiked);
     });
     })
     .catch((err) => {
@@ -99,7 +100,23 @@ export function sendNewCardToServer (cardName, cardLink) {
     })
 }
 
-/* -------- Send Likes and Like Removes to Server -------- */
+/* -------- Remove Cards from Server -------- */
+// TODO: Update the removeCard function to combine
+//  both local and remote card removal (local then server)
+export function removeCardFromServer(cardId) {
+  return fetch(`${config.baseUrl}/cards/${cardId}`, {
+    method: 'DELETE',
+    headers: config.headers,
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(`При удалении карточки ${cardId} сервер вернул: ${res.status}`);
+    })
+}
+
+/* -------- Send Likes and Like Revokes to Server -------- */
 export function sendCardLikeToServer (evt, cardId) {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: 'PUT',

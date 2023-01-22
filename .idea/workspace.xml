@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e71ec0e-5c6c-4b7b-b5d8-536b1a5ab299" name="Changes" comment="feat: webpack + modules + form validation">
-      <change afterPath="$PROJECT_DIR$/src/blocks/element/__like-counter/element__like-counter.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/element/__like-wrapper/element__like-wrapper.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/blocks/popup/__confirmation-button/popup__confirmation-button.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/blocks/popup/__confirmation-message/popup__confirmation-message.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/blocks/popup/__container/_modal/popup__container_modal_confirmation.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/card.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/card.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/index.css" afterDir="false" />
     </list>
@@ -44,20 +47,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/Users/vladimirgromozdin/dev/mesto-project/node_modules/prettier",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/vladimirgromozdin/dev/mesto-project/node_modules/prettier&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager" selected="Node.js.api.js">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/mesto-project/src/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="api.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/components/api.js" working-dir="$PROJECT_DIR$/src/components">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.api.js" />
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

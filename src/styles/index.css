@@ -58,3 +58,7 @@
 @import url("../blocks/popup/__input-error/_active/popup__input-error_active.css");
 @import url("../blocks/popup/__submit-button/_inactive/popup__submit-button_inactive.css");
 @import url("../blocks/popup/__input-field/popup__input-field.css");
+@import url("../blocks/popup/__confirmation-button/popup__confirmation-button.css");
+@import url("../blocks/popup/__confirmation-message/popup__confirmation-message.css");
+@import url("../blocks/popup/__container/_modal/popup__container_modal_confirmation.css");
+
