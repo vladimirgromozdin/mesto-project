@@ -166,7 +166,7 @@
 </div>
 <!-- New Card Template -->
 <template id="new-card-template">
-  <li class="element">
+  <li class="element" data-card-id=cardId" >
     <button type="button" class="element__trash-bin-button"></button>
     <img
       class="element__image"
@@ -175,7 +175,10 @@
     />
     <div class="element__info">
       <h2 class="element__caption">Карачаевск</h2>
-      <button type="button" class="element__like-button"></button>
+      <div class="element__like-wrapper">
+        <button type="button" class="element__like-button"></button>
+        <p class="element__like-counter"></p>
+      </div>
     </div>
   </li>
 </template>

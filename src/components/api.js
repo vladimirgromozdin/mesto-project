@@ -1,5 +1,5 @@
 /* -------- Imports -------- */
-import {createCard} from "./card";
+import {checkIfLikedAlreadyByMe, createCard, updateLikesCounter} from "./card";
 
 /* -------- API Config -------- */
 const config = {
@@ -50,9 +50,12 @@ export function loadInitialCards () {
     })
     .then(cards => {
       cards.forEach(function (card) {
-      const cardAddImageUrl = card.link;
-      const cardAddName = card.name;
-      createCard(cardAddImageUrl, cardAddName);
+        const cardAddImageUrl = card.link;
+        const cardAddName = card.name;
+        const likesCounter = card.likes.length;
+        const cardId = card._id;
+        const isLiked = checkIfLikedAlreadyByMe(card.likes, profileUsername.textContent);
+        createCard(cardAddImageUrl, cardAddName, likesCounter, cardId, isLiked);
     });
     })
     .catch((err) => {
@@ -93,5 +96,40 @@ export function sendNewCardToServer (cardName, cardLink) {
         return res.json()
       }
       return Promise.reject(`При отправке новой карточки сервер вернул: ${res.status}`);
+    })
+}
+
+/* -------- Send Likes and Like Removes to Server -------- */
+export function sendCardLikeToServer (evt, cardId) {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    method: 'PUT',
+    headers: config.headers,
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(`При отправке лайка карточке ${cardId}: ${res.status}`);
+    })
+    .then(newCard => {
+      console.log(newCard);
+      updateLikesCounter(evt, newCard.likes.length)
+    })
+}
+
+export function sendCardLikeRevokeToServer (evt, cardId) {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    method: 'DELETE',
+    headers: config.headers,
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(`Пока снимали лайкк карточке ${cardId} сервер вернул ошибку: ${res.status}`);
+    })
+    .then(newCard => {
+      console.log(newCard);
+      updateLikesCounter(evt, newCard.likes.length)
     })
 }
