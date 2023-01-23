@@ -34,10 +34,13 @@ export function closePopup(item) {
 avatarArea.addEventListener('mouseover', () => showAvatarEditIcon());
 avatarArea.addEventListener('mouseout', () => hideAvatarEditIcon());
 
-export function renderLoading(isLoading) {
+export function renderLoading(isLoading, formEdited, submitText) {
   if (isLoading) {
     const currentForm = document.querySelector('.popup_opened');
     const currentFormSubmitButton = currentForm.querySelector('.popup__submit-button')
     currentFormSubmitButton.textContent = 'Сохранение...'
+  } else {
+    const currentFormSubmitButton = formEdited.querySelector('.popup__submit-button')
+    currentFormSubmitButton.textContent = submitText;
   }
 }

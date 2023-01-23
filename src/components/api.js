@@ -1,5 +1,8 @@
 /* -------- Imports -------- */
-import {checkIfLikedAlreadyByMe, checkOwner, createCard, displayLike, updateLikesCounter} from "./card";
+import {checkIfLikedAlreadyByMe, checkOwner, createCard, revokeLikeFromCard} from "./card";
+import {closePopup, renderLoading} from "./utils";
+import {disableSubmitButton} from "./validate";
+import {updateLikesCounter} from "./card";
 
 /* -------- API Config -------- */
 const config = {
@@ -11,9 +14,25 @@ const config = {
 }
 
 /* -------- Constants -------- */
+const myId = '636f351f1e8b119fd119a678';
 const profileAvatar = document.querySelector(".profile__avatar");
 const profileUsername = document.querySelector(".profile__username");
 const profileStatus = document.querySelector(".profile__status");
+const removalConfirmationPopup = document.querySelector(".popup_content_remove-card-confirmation");
+const newCardAddPopup = document.querySelector(".popup_content_new-card");
+const avatarUpdatePopup = document.querySelector(".popup_content_update-profile-image");
+const profileAvatarIcon = document.querySelector(".profile__avatar");
+const avatarLinkInput = document.querySelector('#avatar-image-link-input');
+const profileEditPopup = document.querySelector(".popup_content_profile");
+const profileEditFormUsernameInput = document.querySelector("#username-input");
+const profileEditFormStatusInput = document.querySelector("#status-input");
+const cardAddImageUrlInput = document.querySelector("#place-image-link-input");
+const cardAddNameInput = document.querySelector("#place-name-input");
+const saveButton = 'Сохранить';
+const createButton = 'Создать'
+const profileFormElement = document.forms['profileForm'];
+const avatarFormElement = document.forms['newAvatarLink'];
+const cardFormElement = document.forms['cardData'];
 
 /* -------- Load Profile Info from Server -------- */
 export function getUserInfo() {
@@ -37,8 +56,8 @@ export function getUserInfo() {
 }
 
 /* -------- Load Initial Cards for Server -------- */
-// TODO: Look into sorting the cards object so the most recent ones are shown on top of the page
-export function loadInitialCards () {
+// TODO: Add Promise All
+export function loadInitialCards() {
   return fetch(`${config.baseUrl}/cards`, {
     headers: config.headers
   })
@@ -54,9 +73,9 @@ export function loadInitialCards () {
         const cardAddName = card.name;
         const likesCounter = card.likes.length;
         const cardId = card._id;
-        const isOwned = checkOwner(card, profileUsername.textContent)
+        const isOwned = checkOwner(card, myId)
         const isLiked = checkIfLikedAlreadyByMe(card.likes, profileUsername.textContent);
-        createCard(cardAddImageUrl, cardAddName, likesCounter, cardId, isOwned, isLiked);
+        createCard(isOwned, cardAddImageUrl, cardAddName, likesCounter, cardId, isLiked);
     });
     })
     .catch((err) => {
@@ -64,14 +83,15 @@ export function loadInitialCards () {
     });
 }
 
+
 /* -------- Upload Profile Edits to Server -------- */
-export function sendUserInfo (profileName, profileStatus) {
+export function sendUserInfoToServer (newName, newStatus) {
   return fetch (`${config.baseUrl}/users/me`, {
     method: 'PATCH',
     headers: config.headers,
     body: JSON.stringify({
-      name: profileName,
-      about: profileStatus,
+      name: newName,
+      about: newStatus,
     })
   })
     .then(res => {
@@ -79,6 +99,17 @@ export function sendUserInfo (profileName, profileStatus) {
         return res.json()
       }
       return Promise.reject(`При отправке данных пользователя сервер вернул: ${res.status}`);
+    })
+    .then(() => {
+      profileUsername.textContent = profileEditFormUsernameInput.value;
+      profileStatus.textContent = profileEditFormStatusInput.value;
+      closePopup(profileEditPopup)
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      renderLoading(false, profileFormElement, saveButton);
     })
 }
 
@@ -97,10 +128,20 @@ export function sendAvatarLinkToServer (link) {
       }
       return Promise.reject(`При отправке ссылки на новый аватар сервер вернул: ${res.status}`);
     })
+    .then(() => {
+      profileAvatarIcon.src = avatarLinkInput.value;
+      closePopup(avatarUpdatePopup);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      renderLoading(false, avatarFormElement, saveButton);
+    })
 }
 
 /* -------- Upload New Card to Server -------- */
-export function sendNewCardToServer (cardName, cardLink) {
+export function sendNewCardToServer (cardName, cardLink, evt) {
   return fetch(`${config.baseUrl}/cards`, {
     method: 'POST',
     headers: config.headers,
@@ -115,12 +156,26 @@ export function sendNewCardToServer (cardName, cardLink) {
       }
       return Promise.reject(`При отправке новой карточки сервер вернул: ${res.status}`);
     })
+    .then(() => {
+      const cardAddCurrentImageUrl = cardAddImageUrlInput.value;
+      const cardAddCurrentName = cardAddNameInput.value;
+      createCard(true, cardAddCurrentImageUrl, cardAddCurrentName);
+      disableSubmitButton(evt.submitter, {
+        inactiveButtonClass: 'popup__submit-button_inactive',
+      },)
+      evt.target.reset();
+      closePopup(newCardAddPopup);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      renderLoading(false, cardFormElement, createButton);
+    })
 }
 
 /* -------- Remove Cards from Server -------- */
-// TODO: Update the removeCard function to combine
-//  both local and remote card removal (local then server)
-export function removeCardFromServer(cardId) {
+export function removeCardFromServer(cardId, targetCard) {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: 'DELETE',
     headers: config.headers,
@@ -130,6 +185,13 @@ export function removeCardFromServer(cardId) {
         return res.json()
       }
       return Promise.reject(`При удалении карточки ${cardId} сервер вернул: ${res.status}`);
+    })
+    .then(() => {
+      targetCard.remove();
+      closePopup(removalConfirmationPopup);
+    })
+    .catch((err) => {
+      console.log(err);
     })
 }
 
@@ -146,8 +208,11 @@ export function sendCardLikeToServer (evt, cardId) {
       return Promise.reject(`При отправке лайка карточке ${cardId}: ${res.status}`);
     })
     .then(newCard => {
-      console.log(newCard);
+      evt.target.classList.add("element__like-button_active");
       updateLikesCounter(evt, newCard.likes.length)
+    })
+    .catch((err) => {
+      console.log(err);
     })
 }
 
@@ -163,7 +228,10 @@ export function sendCardLikeRevokeToServer (evt, cardId) {
       return Promise.reject(`Пока снимали лайкк карточке ${cardId} сервер вернул ошибку: ${res.status}`);
     })
     .then(newCard => {
-      console.log(newCard);
-      updateLikesCounter(evt, newCard.likes.length)
+      evt.target.classList.remove("element__like-button_active");
+      updateLikesCounter(evt, newCard.likes.length);
+    })
+    .catch((err) => {
+      console.log(err);
     })
 }

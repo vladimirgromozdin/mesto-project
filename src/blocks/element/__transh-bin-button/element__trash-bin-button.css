@@ -1,5 +1,5 @@
 .element__trash-bin-button {
-  display: block;
+  display: none;
   background-image: url("../../../images/trash-bin.svg");
   width: 18px;
   height: 19px;

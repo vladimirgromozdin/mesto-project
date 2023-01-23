@@ -6,8 +6,6 @@ import {sendCardLikeRevokeToServer, sendCardLikeToServer, sendNewCardToServer} f
 /* -------- Global Constants -------- */
 const cardList = document.querySelector(".elements__wrapper");
 const cardAddForm = document.querySelector(".popup__form_card");
-const cardAddImageUrlInput = document.querySelector("#place-image-link-input");
-const cardAddNameInput = document.querySelector("#place-name-input");
 const newCardAddButton = document.querySelector(".profile__add-new-button");
 const newCardAddPopup = document.querySelector(".popup_content_new-card");
 const newCardAddPopupCloseButton = document.querySelector(
@@ -15,6 +13,9 @@ const newCardAddPopupCloseButton = document.querySelector(
 );
 const cardTemplate = document.querySelector("#new-card-template").content;
 const removalConfirmationPopup = document.querySelector(".popup_content_remove-card-confirmation");
+const cardAddImageUrlInput = document.querySelector("#place-image-link-input");
+const cardAddNameInput = document.querySelector("#place-name-input");
+const myId = '636f351f1e8b119fd119a678';
 
 /* -------- Creating New Cards -------- */
 export function getCard(cardAddImageUrl, cardAddName, likesCounter, cardId) {
@@ -33,7 +34,13 @@ export function getCard(cardAddImageUrl, cardAddName, likesCounter, cardId) {
   cardName.textContent = cardAddName;
   cardLikesCounter.textContent = likesCounter;
   cardImage.addEventListener("click", showGalleryPopup);
-  cardLikeButton.addEventListener("click", toggleLikeButton);
+  cardLikeButton.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("element__like-button_active")) {
+      sendCardLikeRevokeToServer(evt, cardId);
+    } else {
+      sendCardLikeToServer(evt, cardId);
+    }
+  });
   cardRemoveButton.addEventListener("click", () => {
     showPopup(removalConfirmationPopup, cardId)
   });
@@ -41,29 +48,23 @@ export function getCard(cardAddImageUrl, cardAddName, likesCounter, cardId) {
 }
 
 
-export function createCard(cardAddImageUrl, cardAddName, likesCounter, cardId, isOwned, isLiked) {
+export function createCard(isOwned, cardAddImageUrl, cardAddName, likesCounter, cardId, isLiked) {
   const cardElement = getCard(cardAddImageUrl, cardAddName, likesCounter, cardId)
-  cardList.append(cardElement);
+  cardList.prepend(cardElement);
   if (isLiked) {
     displayLike(cardId);
   }
-  if (!isOwned) {
-    hideRemoveButton(cardId);
+  if (isOwned) {
+    showRemoveButton(cardId);
   }
 }
 
-function handleNewCardSubmission(evt) {
+function handleNewCardSubmission(evt, config) {
   evt.preventDefault();
   renderLoading(true);
-  const cardAddCurrentImageUrl = cardAddImageUrlInput.value;
   const cardAddCurrentName = cardAddNameInput.value;
-  createCard(cardAddCurrentImageUrl, cardAddCurrentName);
-  disableSubmitButton(evt.submitter, {
-    inactiveButtonClass: 'popup__submit-button_inactive',
-    },)
-  sendNewCardToServer (cardAddCurrentName, cardAddCurrentImageUrl);
-  evt.target.reset();
-  closePopup(newCardAddPopup);
+  const cardAddCurrentImageUrl = cardAddImageUrlInput.value;
+  sendNewCardToServer (cardAddCurrentName, cardAddCurrentImageUrl, event);
 }
 
 cardAddForm.addEventListener("submit", handleNewCardSubmission);
@@ -78,14 +79,8 @@ newCardAddPopupCloseButton.addEventListener("click", () => {
 });
 
 /* -------- Removing Cards -------- */
-export function checkOwner(card, me) {
-  return card.owner.name === me;
-}
-
-export function removeCard(cardId) {
-  const targetCard = document.querySelector(`[data-card-id="${cardId}"]`);
-  console.log(targetCard);
-  targetCard.remove();
+export function checkOwner(card, myId) {
+  return card.owner._id === myId;
 }
 
 /* -------- Liking Cards -------- */
@@ -105,24 +100,10 @@ export function displayLike(cardId) {
 // TODO: Figure out how to display remove card button by default,
 //  because right now it is only visible
 //  after the page had been refreshed
-export function hideRemoveButton(cardId) {
+export function showRemoveButton(cardId) {
   const currentCard = document.querySelector(`[data-card-id="${cardId}"]`);
   const cardRemoveButton = currentCard.querySelector(".element__trash-bin-button");
-  cardRemoveButton.style.display = 'none';
-}
-
-function toggleLikeButton(evt) {
-  const currentCard = evt.target.closest(".element");
-  const cardId = currentCard.dataset.cardId;
-  console.log(evt.target.classList);
-  if (evt.target.classList.contains("element__like-button_active")) {
-    evt.target.classList.remove("element__like-button_active");
-    sendCardLikeRevokeToServer(evt, cardId);
-  } else {
-    evt.target.classList.add("element__like-button_active");
-    sendCardLikeToServer(evt, cardId);
-  }
-
+  cardRemoveButton.style.display = 'block';
 }
 
 export function updateLikesCounter(evt, likesNumber) {

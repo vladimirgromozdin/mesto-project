@@ -3,9 +3,14 @@ import "../styles/index.css";
 import {enableValidation} from "./validate";
 import {closePopupOnClicksOutsideOfModal} from "./modal";
 import {getUserInfo, loadInitialCards} from "./api";
+const pageRenderReady = [getUserInfo, loadInitialCards]
 
-getUserInfo();
-loadInitialCards();
+/* -------- Let Page Content Get Ready -------- */
+Promise.all(pageRenderReady)
+  .then(() => {
+    getUserInfo()
+    loadInitialCards();
+  })
 
 /* -------- Enable Form Validation -------- */
 enableValidation({

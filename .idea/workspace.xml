@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="0e71ec0e-5c6c-4b7b-b5d8-536b1a5ab299" name="Changes" comment="feat: webpack + modules + form validation" />
+=======
+    <list default="true" id="0e71ec0e-5c6c-4b7b-b5d8-536b1a5ab299" name="Changes" comment="feat: webpack + modules + form validation">
+      <change beforePath="$PROJECT_DIR$/src/blocks/element/__transh-bin-button/element__trash-bin-button.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/element/__transh-bin-button/element__trash-bin-button.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/card.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/card.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/utils.js" afterDir="false" />
+    </list>
+>>>>>>> develop
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
