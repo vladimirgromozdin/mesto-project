@@ -1,7 +1,9 @@
 .profile__avatar {
   object-fit: cover;
   border-radius: 50%;
-  max-width: 120px;
+  width: 120px; /*Fixed width to avoid flickering while image is loading*/
+  height: 120px; /*Fixed height to avoid flickering while image is loading*/
   aspect-ratio: 1 / 1;
   overflow: hidden;
+  position: relative;
 }

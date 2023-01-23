@@ -44,7 +44,7 @@ export function loadInitialCards () {
   })
     .then(res => {
       if (res.ok) {
-        return res.json()
+        return res.json();
       }
       return Promise.reject(`При получении массива карточек сервер вернул: ${res.status}`);
     })
@@ -79,6 +79,23 @@ export function sendUserInfo (profileName, profileStatus) {
         return res.json()
       }
       return Promise.reject(`При отправке данных пользователя сервер вернул: ${res.status}`);
+    })
+}
+
+/* -------- Upload New Avatar Link to Server -------- */
+export function sendAvatarLinkToServer (link) {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
+    method: 'PATCH',
+    headers: config.headers,
+    body: JSON.stringify({
+      avatar: link,
+    })
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(`При отправке ссылки на новый аватар сервер вернул: ${res.status}`);
     })
 }
 

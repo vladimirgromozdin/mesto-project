@@ -18,11 +18,14 @@
   <main class="content">
     <section class="profile">
       <div class="profile__data">
+        <div class="profile__avatar-wrapper">
+        <img class="profile__edit-icon" src="<%=require('./images/icon-avatar-edit.svg')%>" alt="Иконка редактирования профиля">
         <img
           class="profile__avatar"
-          src="<%=require('./images/profile.png')%>"
+          src=""
           alt="Фотография профиля пользователя"
         />
+        </div>
         <div class="profile__description">
           <div class="profile__username-area">
             <h1 class="profile__username"></h1>
@@ -179,6 +182,39 @@
     <p class="popup__caption"></p>
   </div>
 </div>
+<!-- Update Profile Image Popup -->
+<div class="popup popup_content_update-profile-image popup_opacity_dark">
+  <div class="popup__container popup__container_modal_profile-image">
+    <form class="popup__form popup__form_avatar" name="newAvatarLink" novalidate>
+    <button
+      type="button"
+      class="popup__close-button popup__close-button_content_profile-image"
+    ></button>
+    <h3 class="popup__title">Обновить аватар</h3>
+      <div class="popup__input-area">
+        <label class="popup__input-field">
+          <input
+            required
+            class="popup__input"
+            type="url"
+            name="avatar-image-link"
+            id="avatar-image-link-input"
+            value=""
+            placeholder="Ссылка на картинку"
+          />
+          <span class="popup__input-error avatar-image-link-input-error"></span>
+        </label>
+      </div>
+      <button
+        type="submit"
+        class="popup__submit-button popup__submit-button_content_avatar-link"
+      >
+        Сохранить
+      </button>
+    </form>
+  </div>
+</div>
+
 <!-- New Card Template -->
 <template id="new-card-template">
   <li class="element" data-card-id="cardId" >

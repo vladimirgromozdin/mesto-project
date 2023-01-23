@@ -1,6 +1,5 @@
 import {showGalleryPopup} from "./modal";
-import {showPopup, closePopup} from "./utils";
-import {initialCards} from "./data";
+import {showPopup, closePopup, renderLoading} from "./utils";
 import {disableSubmitButton} from "./validate";
 import {sendCardLikeRevokeToServer, sendCardLikeToServer, sendNewCardToServer} from "./api";
 
@@ -44,7 +43,7 @@ export function getCard(cardAddImageUrl, cardAddName, likesCounter, cardId) {
 
 export function createCard(cardAddImageUrl, cardAddName, likesCounter, cardId, isOwned, isLiked) {
   const cardElement = getCard(cardAddImageUrl, cardAddName, likesCounter, cardId)
-  cardList.prepend(cardElement);
+  cardList.append(cardElement);
   if (isLiked) {
     displayLike(cardId);
   }
@@ -55,6 +54,7 @@ export function createCard(cardAddImageUrl, cardAddName, likesCounter, cardId, i
 
 function handleNewCardSubmission(evt) {
   evt.preventDefault();
+  renderLoading(true);
   const cardAddCurrentImageUrl = cardAddImageUrlInput.value;
   const cardAddCurrentName = cardAddNameInput.value;
   createCard(cardAddCurrentImageUrl, cardAddCurrentName);

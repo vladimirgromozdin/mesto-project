@@ -1,5 +1,8 @@
 .profile__data {
   display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 @media screen and (max-width: 992px) {

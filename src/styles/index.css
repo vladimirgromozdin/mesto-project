@@ -19,6 +19,9 @@
 @import url("../blocks/profile/__status/profile__status.css");
 @import url("../blocks/profile/__add-new-button/profile__add-new-button.css");
 @import url("../blocks/profile/__editname-button/profile__editname-button.css");
+@import url("../blocks/profile/__avatar-wrapper/profile__avatar-wrapper.css");
+@import url("../blocks/profile/__edit-icon/profile__edit-icon.css");
+@import url("../blocks/profile/__edit-icon/_display/profile__edit-icon_display_active.css");
 
 /* Elements Styles */
 @import url("../blocks/elements/__wrapper/elements__wrapper.css");
@@ -61,4 +64,5 @@
 @import url("../blocks/popup/__confirmation-button/popup__confirmation-button.css");
 @import url("../blocks/popup/__confirmation-message/popup__confirmation-message.css");
 @import url("../blocks/popup/__container/_modal/popup__container_modal_confirmation.css");
+@import url("../blocks/popup/__container/_modal/popup__container_modal_profile-image.css");
 

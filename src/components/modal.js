@@ -1,5 +1,5 @@
-import {showPopup, closePopup} from "./utils.js";
-import {sendUserInfo, removeCardFromServer} from "./api";
+import {showPopup, closePopup, renderLoading} from "./utils.js";
+import {sendUserInfo, removeCardFromServer, sendAvatarLinkToServer} from "./api";
 import {removeCard} from "./card";
 
 /* -------- Global Constants -------- */
@@ -21,9 +21,15 @@ const removalConfirmationPopupCloseButton = removalConfirmationPopup.querySelect
 const removalConfirmationYesButton = document.querySelector('.popup__confirmation-button');
 const profileEditFormUsernameInput = document.querySelector("#username-input");
 const profileEditFormStatusInput = document.querySelector("#status-input");
+const profileAvatarWrapper = document.querySelector('.profile__avatar-wrapper');
+const profileAvatarIcon = document.querySelector(".profile__avatar");
 const profileFormElement = document.forms['profileForm'];
+const avatarFormElement = document.forms['newAvatarLink'];
 const cardImageCaption = document.querySelector(".popup__caption");
 const galleryPopupImage = document.querySelector(".popup__image");
+const avatarUpdatePopup = document.querySelector(".popup_content_update-profile-image");
+const avatarUpdatePopupCloseButton = document.querySelector('.popup__close-button_content_profile-image');
+const avatarLinkInput = document.querySelector('#avatar-image-link-input');
 
 /* -------- Show Removal Confirmation Popup -------- */
 removalConfirmationPopupCloseButton.addEventListener('click', () => {
@@ -39,6 +45,9 @@ removalConfirmationYesButton.addEventListener("click", () => {
   removeCardFromServer(cardId);
   closePopup(openedPopup);
 })
+
+/* -------- Add Listener to Avatar Icon -------- */
+profileAvatarWrapper.addEventListener('click', () => showPopup(avatarUpdatePopup))
 
 /* -------- Show Gallery Image Popup -------- */
 export function showGalleryPopup(evt) {
@@ -99,16 +108,28 @@ profileEditButton.addEventListener("click", () => {
 profileEditPopupCloseButton.addEventListener("click", () =>
   closePopup(profileEditPopup)
 );
+
+avatarUpdatePopupCloseButton.addEventListener("click", () =>
+  closePopup(avatarUpdatePopup)
+);
 export function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  profileUsername.textContent = profileEditFormUsernameInput.value;
-  profileStatus.textContent = profileEditFormStatusInput.value;
+  renderLoading(true);
   const profileName = profileEditFormUsernameInput.value;
   const profileDescription = profileEditFormStatusInput.value;
   sendUserInfo(profileName, profileDescription);
+  profileUsername.textContent = profileEditFormUsernameInput.value;
+  profileStatus.textContent = profileEditFormStatusInput.value;
   closePopup(profileEditPopup);
 }
 
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
+avatarFormElement.addEventListener("submit", handleAvatarLinkSubmit);
 
-
+export function handleAvatarLinkSubmit(evt) {
+  evt.preventDefault();
+  renderLoading(true);
+  profileAvatarIcon.src = avatarLinkInput.value;
+  sendAvatarLinkToServer(avatarLinkInput.value);
+  closePopup(avatarUpdatePopup)
+}

@@ -1,0 +1,11 @@
+.profile__avatar-wrapper {
+  position: relative;
+  border-radius: 50%;
+
+}
+
+.profile__avatar-wrapper:hover {
+  opacity: 0.2;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
