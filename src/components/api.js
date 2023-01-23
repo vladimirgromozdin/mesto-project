@@ -156,10 +156,10 @@ export function sendNewCardToServer (cardName, cardLink, evt) {
       }
       return Promise.reject(`При отправке новой карточки сервер вернул: ${res.status}`);
     })
-    .then(() => {
-      const cardAddCurrentImageUrl = cardAddImageUrlInput.value;
-      const cardAddCurrentName = cardAddNameInput.value;
-      createCard(true, cardAddCurrentImageUrl, cardAddCurrentName);
+    .then((card) => {
+      const cardAddCurrentImageUrl = card.link;
+      const cardAddCurrentName = card.name;
+      createCard(true, card.link, card.name, card.likes.length, card._id);
       disableSubmitButton(evt.submitter, {
         inactiveButtonClass: 'popup__submit-button_inactive',
       },)
