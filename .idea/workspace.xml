@@ -5,23 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e71ec0e-5c6c-4b7b-b5d8-536b1a5ab299" name="Changes" comment="feat: webpack + modules + form validation">
-      <change afterPath="$PROJECT_DIR$/src/blocks/popup/__container/_modal/popup__container_modal_profile-image.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/profile/__avatar-wrapper/profile__avatar-wrapper.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/profile/__edit-icon/_display/profile__edit-icon_display_active.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/blocks/profile/__edit-icon/profile__edit-icon.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/popup/__container/_modal/popup__container_modal_confirmation.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/popup/__container/_modal/popup__container_modal_confirmation.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/popup/__container/_modal/popup__container_modal_image.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/popup/__container/_modal/popup__container_modal_image.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/popup/__title/popup__title.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/popup/__title/popup__title.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/profile/__avatar/profile__avatar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/profile/__avatar/profile__avatar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/profile/__data/profile__data.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/profile/__data/profile__data.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/element/__transh-bin-button/element__trash-bin-button.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/element/__transh-bin-button/element__trash-bin-button.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/card.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/card.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/data.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
