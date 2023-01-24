@@ -9,7 +9,6 @@ import {checkIfLikedAlreadyByMe, checkOwner, createCard} from "./card";
 const profileUsername = document.querySelector(".profile__username");
 const profileStatus = document.querySelector(".profile__status");
 const profileAvatar = document.querySelector(".profile__avatar");
-const myId = '636f351f1e8b119fd119a678';
 
 /* -------- Let Page Content Get Ready -------- */
 Promise.all([getUserInfo(), loadInitialCards()])
@@ -17,13 +16,14 @@ Promise.all([getUserInfo(), loadInitialCards()])
     profileUsername.textContent = user.name;
     profileStatus.textContent = user.about;
     profileAvatar.src = user.avatar;
+    const myId = user._id;
     cards.forEach(function (card) {
       const cardAddImageUrl = card.link;
       const cardAddName = card.name;
       const likesCounter = card.likes.length;
       const cardId = card._id;
       const isOwned = checkOwner(card, myId)
-      const isLiked = checkIfLikedAlreadyByMe(card.likes, profileUsername.textContent);
+      const isLiked = checkIfLikedAlreadyByMe(card.likes, user._id);
       createCard(isOwned, cardAddImageUrl, cardAddName, likesCounter, cardId, isLiked);
     });
   })

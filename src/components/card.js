@@ -15,7 +15,6 @@ const cardTemplate = document.querySelector("#new-card-template").content;
 const removalConfirmationPopup = document.querySelector(".popup_content_remove-card-confirmation");
 const cardAddImageUrlInput = document.querySelector("#place-image-link-input");
 const cardAddNameInput = document.querySelector("#place-name-input");
-const myId = '636f351f1e8b119fd119a678';
 
 /* -------- Creating New Cards -------- */
 export function getCard(cardAddImageUrl, cardAddName, likesCounter, cardId) {
@@ -84,11 +83,8 @@ export function checkOwner(card, myId) {
 }
 
 /* -------- Liking Cards -------- */
-// TODO: Think on how this check can be improved,
-//   because right now it relies on the name and if someone
-//   has the same name, the cards would be shown as liked
 export function checkIfLikedAlreadyByMe(likes, me) {
-  return likes.some(item => item.name === me);
+  return likes.some(item => item._id === me);
 }
 
 export function displayLike(cardId) {
