@@ -14,8 +14,6 @@ const config = {
 }
 
 /* -------- Constants -------- */
-const myId = '636f351f1e8b119fd119a678';
-const profileAvatar = document.querySelector(".profile__avatar");
 const profileUsername = document.querySelector(".profile__username");
 const profileStatus = document.querySelector(".profile__status");
 const removalConfirmationPopup = document.querySelector(".popup_content_remove-card-confirmation");
@@ -45,11 +43,6 @@ export function getUserInfo() {
       }
       return Promise.reject(`При получении данных профиля сервер вернул: ${res.status}`);
     })
-    .then(user => {
-      profileUsername.textContent = user.name;
-      profileStatus.textContent = user.about;
-      profileAvatar.src = user.avatar;
-    })
     .catch((err) => {
       console.log(err);
     });
@@ -66,17 +59,6 @@ export function loadInitialCards() {
         return res.json();
       }
       return Promise.reject(`При получении массива карточек сервер вернул: ${res.status}`);
-    })
-    .then(cards => {
-      cards.forEach(function (card) {
-        const cardAddImageUrl = card.link;
-        const cardAddName = card.name;
-        const likesCounter = card.likes.length;
-        const cardId = card._id;
-        const isOwned = checkOwner(card, myId)
-        const isLiked = checkIfLikedAlreadyByMe(card.likes, profileUsername.textContent);
-        createCard(isOwned, cardAddImageUrl, cardAddName, likesCounter, cardId, isLiked);
-    });
     })
     .catch((err) => {
       console.log(err);

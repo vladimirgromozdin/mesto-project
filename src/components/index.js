@@ -3,14 +3,33 @@ import "../styles/index.css";
 import {enableValidation} from "./validate";
 import {closePopupOnClicksOutsideOfModal} from "./modal";
 import {getUserInfo, loadInitialCards} from "./api";
-const pageRenderReady = [getUserInfo, loadInitialCards]
+import {checkIfLikedAlreadyByMe, checkOwner, createCard} from "./card";
+
+/* -------- Constants -------- */
+const profileUsername = document.querySelector(".profile__username");
+const profileStatus = document.querySelector(".profile__status");
+const profileAvatar = document.querySelector(".profile__avatar");
+const myId = '636f351f1e8b119fd119a678';
 
 /* -------- Let Page Content Get Ready -------- */
-Promise.all(pageRenderReady)
-  .then(() => {
-    getUserInfo()
-    loadInitialCards();
+Promise.all([getUserInfo(), loadInitialCards()])
+  .then(([user, cards]) => {
+    profileUsername.textContent = user.name;
+    profileStatus.textContent = user.about;
+    profileAvatar.src = user.avatar;
+    cards.forEach(function (card) {
+      const cardAddImageUrl = card.link;
+      const cardAddName = card.name;
+      const likesCounter = card.likes.length;
+      const cardId = card._id;
+      const isOwned = checkOwner(card, myId)
+      const isLiked = checkIfLikedAlreadyByMe(card.likes, profileUsername.textContent);
+      createCard(isOwned, cardAddImageUrl, cardAddName, likesCounter, cardId, isLiked);
+    });
   })
+  .catch((err) => {
+    console.log(err);
+  });
 
 /* -------- Enable Form Validation -------- */
 enableValidation({
