@@ -7,7 +7,7 @@
     "build": "rm -rf dist && webpack --mode production",
     "dev": "webpack serve",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && scp -Сr ./dist/* gromozdin@89.169.172.196:/home/gromozdin/mesto-frontend"
   },
   "repository": {
     "type": "git",

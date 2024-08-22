@@ -6,7 +6,7 @@ import {updateLikesCounter} from "./card";
 
 /* -------- API Config -------- */
 const config = {
-  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-18',
+  baseUrl: 'api.kolobkov.nomorepartiesco.ru',
   headers: {
     authorization: 'f14db4e9-636d-4f4a-a139-30505d4235b0',
     'Content-Type': 'application/json'
